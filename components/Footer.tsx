@@ -39,37 +39,7 @@ const GLOW =
   "0 0 14px rgba(255, 200, 110, 0.7), " +
   "0 0 28px rgba(255, 180, 90, 0.45)";
 
-// ---------------------------------------------------------------------------
-// Social icon buttons — circular, off-white border, single-glyph icon.
-// Inline SVG so no icon font is needed.
-// ---------------------------------------------------------------------------
-function SocialButton({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-transform hover:-translate-y-[2px]"
-      style={{
-        border: `1.5px solid ${INK}`,
-        color: INK,
-        background: "rgba(255, 255, 255, 0.25)",
-        textShadow: LIFT,
-      }}
-    >
-      {children}
-    </a>
-  );
-}
+
 
 function LinkedInGlyph() {
   return (
@@ -188,7 +158,6 @@ const FOOTER_FILTERS = (
 const TILT_MAX_DEG = 7;     // peak rotation in each axis
 const TILT_LIFT_PX = 6;     // how far the card lifts on hover
 const TILT_GLOSS = 0.18;    // max opacity of the cursor highlight
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 function TiltCard({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement | null>(null);
