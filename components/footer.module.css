@@ -1,0 +1,236 @@
+/* ---------------------------------------------------------------------------
+ * Footer — glass-card styles
+ *
+ * Each of the 4 footer columns is wrapped in a `.glassCard` div. The card
+ * itself is a semi-transparent surface (so the painting + scrim show
+ * through, blurred), with a layered frost grain generated procedurally by
+ * the SVG filter declared in Footer.tsx (feTurbulence + feDisplacementMap
+ * + feColorMatrix).
+ *
+ * The card is applied to the column wrapper, not the column contents, so
+ * the column text sits on the frosted surface and inherits the filter
+ * automatically via `backdrop-filter`.
+ * ------------------------------------------------------------------------- */
+
+.glassCard {
+  position: relative;
+  border-radius: 6px;
+  padding: 22px 22px 24px 22px;
+  color: var(--ink, #1a1108);
+
+  /* The frosted surface. Without a black scrim behind, the painting is
+     bright and warm, so the card needs a much more visible warm-white
+     fill + a strong border to read as a real piece of glass. The
+     backdrop blur still softens what's behind. */
+  background: rgba(245, 240, 232, 0.22);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+
+  /* Layered shadow: outer drop for depth, inset top highlight for the
+     rim of light that real glass picks up. */
+  box-shadow:
+    0 10px 32px -8px rgba(40, 25, 10, 0.45),
+    0 2px 6px rgba(40, 25, 10, 0.25),
+    inset 0 1px 0 rgba(255, 248, 224, 0.55);
+
+  /* Stronger warm border so the card edge reads on the bright painting. */
+  border: 1px solid rgba(120, 85, 45, 0.4);
+
+  /* The frost grain sits on top of the blurred glass as a separate
+     layer. The SVG filter lives in Footer.tsx and is referenced by
+     URL via the inline `filter:` declaration. */
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* The frost layer is a real <div> rendered inside the card so the SVG
+   filter can be applied to it. `feTurbulence` + `feDisplacementMap` give
+   the noise real spatial structure, and `mix-blend-mode: overlay` makes
+   it brighten the highlights and darken the shadows of the underlying
+   blur. */
+.glassFrost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  /* The actual filter is declared in Footer.tsx as `url(#frost)` and
+     applied via inline style on this element. */
+  background: rgba(255, 248, 224, 0.14);
+  mix-blend-mode: overlay;
+  z-index: 0;
+}
+
+/* Keep all column content above the frost overlay. */
+.glassCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* The inner top highlight — a thin lighter line that runs along the
+   upper edge of the card. Drawn via a layered background so it adapts
+   to the rounded corners. */
+.glassCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 248, 224, 0.7),
+    transparent
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* The displaced frost is only meaningful when the SVG filter is in
+   the DOM. If the filter fails to load (e.g. inline SVG defs
+   stripped), the card falls back to a clean blurred surface. */
+
+/* ---------------------------------------------------------------------------
+ * Tilt wrapper — outer div that gets the 3D transform on hover.
+ *
+ *   • `perspective` is applied here (not on the grid) so each card has
+ *     its own local 3D space — tilting one card doesn't disturb its
+ *     neighbours' vanishing points.
+ *   • `transform-style: preserve-3d` lets the inner card and its frost
+ *     layer be transformed together in the same 3D context.
+ *   • The transform itself is set inline on the element (the React
+ *     handler updates it on every mousemove), so this CSS just provides
+ *     the transition + 3D context.
+ *
+ * The specular highlight is a radial gradient that follows the cursor
+ * via two CSS variables (`--gx`, `--gy`) set inline by the React
+ * handler. Its opacity is `--gloss`, also set inline.
+ * ------------------------------------------------------------------------- */
+.tiltWrap {
+  position: relative;
+  perspective: 900px;
+  transform-style: preserve-3d;
+  /* Smooth tilt — both the rotate and the lift animate together so the
+     card never snaps. */
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+/* The specular highlight — a soft warm glow that follows the cursor
+   over the card. Sits above the frost layer (z 1+) but below the
+   column content. */
+.tiltWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  /* The gradient is positioned by --gx / --gy (set inline by the React
+     handler). It's pinned to the card's box so it follows the card as
+     it tilts. */
+  background: radial-gradient(
+    220px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 248, 224, 0.55),
+    rgba(255, 248, 224, 0) 70%
+  );
+  /* The gloss opacity comes from --gloss (0 when not hovered, 0.18
+     when hovered), so the highlight is invisible at rest. */
+  opacity: var(--gloss, 0);
+  mix-blend-mode: soft-light;
+  transition: opacity 220ms ease;
+  z-index: 0;
+  /* Inherit the rounded corners from the .glassCard. */
+  border-radius: 6px;
+}
+
+/* The inner .glassCard sits inside the tilt wrapper. The highlight
+   pseudo lives on the wrapper, so we make sure the card itself stays
+   above it visually — the wrapper is the 3D surface, the card rides
+   on top of it. */
+.tiltWrap > .glassCard {
+  transform: translateZ(0);
+}
+
+/* On devices that prefer no motion, drop the rotation entirely and
+   only keep a static lift via :hover. */
+@media (prefers-reduced-motion: reduce) {
+  .tiltWrap {
+    transition: none;
+  }
+  .tiltWrap:hover {
+    transform: translateY(-3px) !important;
+  }
+  .tiltWrap::after {
+    display: none;
+  }
+  .glowText,
+  .glowByline {
+    animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Pull-quote glow — the line "Make happiness work for you…" reads as a
+ * lit piece of type. A static layered text-shadow gives it a warm halo
+ * at rest; the keyframe pulses the opacity so the glow gently breathes.
+ * The byline is half-strength so the main quote is the brightest point.
+ * ------------------------------------------------------------------------- */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(255, 220, 140, 0.95),
+      0 0 14px rgba(255, 200, 110, 0.7),
+      0 0 28px rgba(255, 180, 90, 0.45);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(255, 230, 160, 1),
+      0 0 20px rgba(255, 210, 130, 0.85),
+      0 0 40px rgba(255, 190, 100, 0.6);
+  }
+}
+
+.glowText {
+  animation: glowPulse 4.2s ease-in-out infinite;
+}
+
+@keyframes glowPulseSoft {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(255, 220, 140, 0.6),
+      0 0 10px rgba(255, 200, 110, 0.4),
+      0 0 18px rgba(255, 180, 90, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 5px rgba(255, 230, 160, 0.75),
+      0 0 14px rgba(255, 210, 130, 0.55),
+      0 0 26px rgba(255, 190, 100, 0.35);
+  }
+}
+
+.glowByline {
+  animation: glowPulseSoft 4.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+/* ---------------------------------------------------------------------------
+ * FallingByline — the scattered/scrambled effect for "— AVEECK".
+ *
+ * Each letter starts at its own y/rotate offset, so the byline reads as
+ * broken-apart letterforms at rest. On hover, every glyph springs to
+ * y:0, rotate:0 (assembled). The wrapper reserves a minimum height so
+ * the scattered letters don't cause the rest of the footer to reflow.
+ * ------------------------------------------------------------------------- */
+.bylineBroken {
+  /* Larger min-height so the more-extreme scatter (y ±18, rotate ±30°)
+     has room without reflowing the rest of the footer. */
+  min-height: 2.4em;
+  padding: 0.4em 0;
+  /* Lift the per-letter text-shadow so the glow reads on each scattered
+     glyph, not only on the baseline. */
+  text-shadow:
+    0 0 4px rgba(255, 220, 140, 0.6),
+    0 0 10px rgba(255, 200, 110, 0.4),
+    0 0 18px rgba(255, 180, 90, 0.25);
+}

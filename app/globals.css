@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #C8B293;
+  --fg: #1A1A1A;
+  --primary: #1A1A1A;
+  --primary-fg: #F6E8D3;
+  --secondary: #8B6530;
+  --secondary-fg: #1A1A1A;
+  --accent: #D4A853;
+  --accent-fg: #1A1A1A;
+  --surface: #A89070;
+  --surface-fg: #1A1A1A;
+  --border: #1A1A1A;
+  --muted: #B8A080;
+  --muted-fg: #5C4A30;
+  --card: #E2D4BA;
+  --card-fg: #1A1A1A;
+  --shadow: #1A1A1A;
+  --nav-bg: rgba(200, 178, 147, 0.94);
+  --nav-border: rgba(139, 101, 48, 0.5);
+  --dot-overlay: rgba(26, 26, 26, 0.15);
+
+  --ink: #1A1A1A;
+  --ink-deep: #0D0B09;
+  --copper: #8B6530;
+  --sage: #8BBF65;
+  --parchment: #E2D4BA;
+}
+
+[data-theme="ai"] {
+  --bg: #0047AB;
+  --fg: #E8ECF4;
+  --primary: #E8ECF4;
+  --primary-fg: #0A0E17;
+  --secondary: #131927;
+  --secondary-fg: #E8ECF4;
+  --accent: #00E5FF;
+  --accent-fg: #0A0E17;
+  --surface: #131927;
+  --surface-fg: #E8ECF4;
+  --border: #2A3550;
+  --muted: #1E2740;
+  --muted-fg: #8899B8;
+  --card: #131927;
+  --card-fg: #E8ECF4;
+  --shadow: #1E2740;
+  --nav-bg: #0A0E17;
+  --nav-border: #38BDF8;
+  --dot-overlay: rgba(0, 229, 255, 0.25);
+}
+
+[data-theme="ai"] body {
+  background-image:
+    radial-gradient(circle, var(--dot-overlay) 1px, transparent 1px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle, var(--dot-overlay) 1px, transparent 1px),
+    url("/assets/new-background.webp");
+  background-size: 20px 20px, cover;
+  background-position: center;
+  color: var(--fg);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/*
+ * `background-attachment: fixed` is the most expensive per-frame cost
+ * on mobile scroll — the browser has to repaint the entire viewport
+ * every frame. We only enable it on desktop where it adds the
+ * "the page is sitting on a fixed canvas" feeling without the cost.
+ * On mobile the dot grid + webp still look fine with the default
+ * `scroll`.
+ */
+@media (min-width: 769px) {
+  body {
+    background-attachment: fixed;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body,
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Animation policy
+   ─────────────────────────────────────────────────────────────────
+   Only animate `transform` and `opacity`. They run on the compositor
+   thread without invalidating layout or paint. Avoid `filter`,
+   `box-shadow`, `background-position` with `attachment: fixed`, and
+   large blurred backdrops.
+
+   The `body.low-motion` class is toggled on mobile by a tiny client
+   component in `app/layout.tsx` (`<LowMotionBoot />`). It's a perf
+   toggle the site imposes on itself, distinct from the user's
+   `prefers-reduced-motion: reduce` setting (which we already honor
+   above). The two compose: if the user has reduced-motion on, the
+   site is in low-motion at any viewport, and the
+   `transition-duration: 0.01ms` rule from the block above applies
+   in addition to the stricter rule below. */
+body.low-motion *,
+body.low-motion *::before,
+body.low-motion *::after {
+  animation: none !important;
+  transition-duration: 0.15s !important;
+}
+
+@layer utilities {
+  .neo-shadow {
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .neo-shadow-lg {
+    box-shadow: 6px 6px 0 var(--shadow);
+  }
+  .neo-shadow-sm {
+    box-shadow: 2px 2px 0 var(--shadow);
+  }
+  .neo-border {
+    border: 2px solid var(--border);
+  }
+  .neo-card {
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .theme-bg {
+    background-color: var(--bg);
+  }
+  .theme-surface {
+    background-color: var(--surface);
+  }
+  .theme-card {
+    background-color: var(--card);
+  }
+  .theme-fg {
+    color: var(--fg);
+  }
+  .theme-accent {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+  }
+  .theme-muted {
+    background-color: var(--muted);
+    color: var(--muted-fg);
+  }
+}
+
+@keyframes hero-float-1 {
+  0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+  50% { transform: translateY(-5px) rotate(-1.5deg); }
+}
+@keyframes hero-float-2 {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50% { transform: translateY(-4px) rotate(1deg); }
+}
+@keyframes hero-float-3 {
+  0%, 100% { transform: translateY(0px) rotate(-0.5deg); }
+  50% { transform: translateY(-6px) rotate(-0.5deg); }
+}
+@keyframes hero-float-4 {
+  0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+  50% { transform: translateY(-3px) rotate(1.5deg); }
+}
+@keyframes hero-float-photo {
+  0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+  50% { transform: translateY(-3px) rotate(1.5deg); }
+}
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes hero-ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(184, 106, 50, 0.55);
+    opacity: 1;
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(184, 106, 50, 0);
+    opacity: 0.8;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(184, 106, 50, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Paper Stack — fall / hold / physics-return choreography
+   ─────────────────────────────────────────────────────────────
+
+   Lifecycle:
+     1. STACKED       — three papers hang from clips.
+     2. FALLING_1..3  — CSS keyframes (paper-fall-N) drop each
+                        paper on user scroll. Existing choreography,
+                        untouched.
+     3. ALL_THREE_DOWN — CSS forwards fill holds the fallen pose
+                         while the 10-second timer counts down.
+     4. RETURNING     — Matter.js takes over (see
+                        lib/MatterPhysicsController.ts). The CSS
+                        animation is removed; the DOM is driven by
+                        `translate3d(...)` updated every frame from
+                        the rigid bodies. Each body is created AT
+                        its current visible fallen position and
+                        attached by a soft spring constraint to its
+                        original anchor on the wire. Bodies swing,
+                        overshoot, oscillate, and damp to rest.
+     5. STACKED       — Matter.js bodies are disposed; the DOM
+                        transforms are snapped to the original
+                        positions and the next cycle can begin.
+*/
+
+@keyframes paper-fall-1 {
+  0%   { transform: translate3d(0, 0, 0) rotate(-0.6deg) scale(1); opacity: 1; }
+  60%  { transform: translate3d(-13vw, 42vh, 0) rotate(-22deg) scale(0.97); opacity: 1; }
+  100% { transform: translate3d(-24vw, 72vh, 0) rotate(-34deg) scale(0.94); opacity: 1; }
+}
+@keyframes paper-fall-2 {
+  0%   { transform: translate3d(0, 0, 0) rotate(0.4deg) scale(1); opacity: 1; }
+  60%  { transform: translate3d(9vw, 39vh, 0) rotate(17deg) scale(0.97); opacity: 1; }
+  100% { transform: translate3d(16vw, 66vh, 0) rotate(28deg) scale(0.94); opacity: 1; }
+}
+@keyframes paper-fall-3 {
+  0%   { transform: translate3d(0, 0, 0) rotate(-0.3deg) scale(1); opacity: 1; }
+  60%  { transform: translate3d(-5vw, 35vh, 0) rotate(-13deg) scale(0.97); opacity: 1; }
+  100% { transform: translate3d(-10vw, 60vh, 0) rotate(-24deg) scale(0.94); opacity: 1; }
+}
+
+/* Persist the end pose after a fall. Without these classes React removes the
+   completed keyframe animation on the next render and the paper snaps back
+   to its clip before the 10-second hold can begin. */
+.paper-fallen-1 {
+  transform: translate3d(-24vw, 72vh, 0) rotate(-34deg) scale(0.94) !important;
+  opacity: 1 !important;
+}
+.paper-fallen-2 {
+  transform: translate3d(16vw, 66vh, 0) rotate(28deg) scale(0.94) !important;
+  opacity: 1 !important;
+}
+.paper-fallen-3 {
+  transform: translate3d(-10vw, 60vh, 0) rotate(-24deg) scale(0.94) !important;
+  opacity: 1 !important;
+}
+
+@keyframes paper-settle-1 {
+  0%   { transform: translateY(-8px) rotate(-0.6deg); }
+  60%  { transform: translateY(2px)  rotate(-0.2deg); }
+  100% { transform: translateY(0)    rotate(-0.6deg); }
+}
+@keyframes paper-settle-2 {
+  0%   { transform: translateY(-8px) rotate(0.4deg); }
+  60%  { transform: translateY(2px)  rotate(0.8deg); }
+  100% { transform: translateY(0)    rotate(0.4deg); }
+}
+@keyframes paper-settle-3 {
+  0%   { transform: translateY(-8px) rotate(-0.3deg); }
+  60%  { transform: translateY(2px)  rotate(0.1deg); }
+  100% { transform: translateY(0)    rotate(-0.3deg); }
+}
+
+/* The Aristotle plate is rendered as a back layer INSIDE the
+   PaperStack scene (components/AristotleSection.tsx), not as a
+   separate section below the About Me interaction. */
+
+@keyframes clip-open {
+  0%   { transform: rotate(0deg) translateY(0); }
+  40%  { transform: rotate(-6deg) translateY(2px); }
+  100%  { transform: rotate(0deg) translateY(0); }
+}
+
+@keyframes clip-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(0.6deg); }
+}
+
+.paper-ruled {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 28px,
+      rgba(23, 20, 17, 0.07) 28px,
+      rgba(23, 20, 17, 0.07) 29px
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-card { animation: none !important; }
+  .hero-float-photo { animation: none !important; }
+  .hero-pulse-dot { animation: none !important; }
+  .paper-fall { animation: none !important; }
+  .clip-sway  { animation: none !important; }
+}

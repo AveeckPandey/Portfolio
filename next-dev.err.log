@@ -1,0 +1,2599 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="audiowide_1138515c-module__OZU9yq__variable orbitron_55466082-module__v9LqMq__var..."
+-                         suppresshydrationwarning="true"
+-                         data-qb-installed="true"
+                        >
+                  ...
+ 
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TearDivider />
+     |        ^
+  44 |       <TechTicker />
+  45 |       <TearDivider />
+  46 |       <About about={data.about} /> {
+  digest: '3180726843'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TearDivider />
+     |        ^
+  44 |       <TechTicker />
+  45 |       <TearDivider />
+  46 |       <About about={data.about} /> {
+  digest: '3180726843'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TearDivider />
+     |        ^
+  44 |       <TechTicker />
+  45 |       <TearDivider />
+  46 |       <About about={data.about} /> {
+  digest: '3180726843'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TearDivider />
+     |        ^
+  44 |       <TechTicker />
+  45 |       <TearDivider />
+  46 |       <About about={data.about} /> {
+  digest: '3180726843'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TearDivider />
+     |        ^
+  44 |       <TechTicker />
+  45 |       <TearDivider />
+  46 |       <About about={data.about} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:43:8)
+  41 |       <Navbar />
+  42 |       <Hero hero={data.hero} crossLink={data.crossLink} />
+> 43 |       <TechTicker />
+     |        ^
+  44 |       <About about={data.about} />
+  45 |       <TearDivider />
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+⨯ ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} /> {
+  digest: '2170353308'
+}
+[browser] Uncaught ReferenceError: TearDivider is not defined
+    at SoftwarePage (app\page.tsx:45:8)
+  43 |       <TechTicker />
+  44 |       <About about={data.about} />
+> 45 |       <TearDivider />
+     |        ^
+  46 |       <Expertise expertise={data.expertise} title="Expertise" />
+  47 |       <TearDivider />
+  48 |       <Projects projects={data.projects} />
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html
+                          lang="en"
+                          className="audiowide_1138515c-module__OZU9yq__variable orbitron_55466082-module__v9LqMq__var..."
+-                         suppresshydrationwarning="true"
+-                         data-qb-installed="true"
+                        >
+                  ...
+ 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/ai/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 
+[browser] ./components/PaperStack.tsx:715:18
+Error: Expected '</', got 'numeric literal'
+  713 |       <rect x="9" y="17" width="26" height="2" rx="1" fill="#3a342e" opacity="0.7" />
+  714 |       <path d="M 8 36 L 36 36 L 34 50 L 10 50 Z" fill="#0d0b09" stroke="#000" strokeWidth...
+> 715 |       <path d="M 10 38 L 34 38 L 33 41 L 11 41 Z" fill="#2a2520" opacity="0.8" />
+      |                  ^^
+  716 |       <circle cx="11" cy="25" r="1.6" fill="#4a4540" />
+  717 |       <circle cx="33" cy="25" r="1.6" fill="#4a4540" />
+  718 |       <ellipse cx="22" cy="58" rx="14" ry="1.5" fill="rgba(0,0,0,0.25)" />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/PaperStack.tsx
+    ./components/About.tsx
+    ./app/page.tsx 

@@ -1,0 +1,26 @@
+﻿
+> star-wars-portfolio@0.1.0 dev
+> next dev
+
+node.exe : ⚠ Port 3000 is in use by process 25680, using available port 3001 instead.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\aveec\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (⚠ Port 3000 is ...t 3001 instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+▲ Next.js 16.3.3 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.29.219:3001
+✓ Ready in 523ms
+✓ Running next.config.js took 27ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          25680
+- Dir:          C:\Users\aveec\Desktop\portfolio-2\portfolio
+- Log:          .next\dev\logs\next-development.log
+
+You can access the existing server at http://localhost:3000,
+or run taskkill /PID 25680 /F to stop it and start a new one.
+[?25h

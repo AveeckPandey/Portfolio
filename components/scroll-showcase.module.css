@@ -1,0 +1,686 @@
+/* ---------------------------------------------------------------------------
+ * ScrollShowcase — Greco-Roman classical folio
+ *
+ * A single pinned section that scrubs through project folios one at a time.
+ * The aesthetic borrows from a museum-quality codex: aged parchment, Roman
+ * numerals, wax-seal rings, gold rules, Cinzel + Cormorant Garamond type.
+ *
+ * Glass treatment: the intro hero AND each project folio is rendered as
+ * a translucent parchment-tinted panel with a blurred backdrop and a
+ * soft sepia border, matching the footer cards. This gives the whole
+ * section a consistent frosted-placard feel.
+ * ------------------------------------------------------------------------- */
+
+/* Palette — kept inside the section so the rest of the site is untouched. */
+.demoRoot {
+  --ink: #2b1f12;
+  --ink-soft: #5a4630;
+  --parchment: #e9dcb8;
+  --parchment-deep: #d4c190;
+  --parchment-shadow: #a08560;
+  --gold: #b8923a;
+  --gold-deep: #8a6c20;
+  --cinnabar: #8b2e2e;
+  --laurel: #5e6b3a;
+
+  --font-display: var(--font-cinzel), "Trajan Pro", "Cinzel", "Times New Roman", serif;
+  --font-body: var(--font-cormorant), "Cormorant Garamond", "Garamond", "Times New Roman", serif;
+
+  position: relative;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+ * Intro backdrop — first viewport of the section. No card chrome; the
+ * heading sits directly on the body background.
+ * ------------------------------------------------------------------------- */
+.introBackdrop {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6vh 6vw;
+  text-align: center;
+  gap: 18px;
+}
+
+.introSub {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5C3D1E;
+  margin: 0;
+}
+
+.introHeading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 7vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  transform-origin: center top;
+}
+
+/* ---------------------------------------------------------------------------
+ * Pinned folio scene
+ * ------------------------------------------------------------------------- */
+.sceneWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.sceneSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+  align-items: center;
+  gap: 4vw;
+  /* Top padding clears the fixed navbar (~64px tall) so the folio's
+     header line isn't covered by it. The folio's `inset: 0` still
+     spans the full 100vh, but its content is anchored below the
+     navbar. */
+  padding: calc(64px + 4vh) 5vw 4vh;
+  /* Allow the wax-seal ring (which sits at top: -18px; right: -18px
+     on each folio) to extend slightly outside the folio's own
+     border. We still clip horizontally so the active folio's slide
+     transitions don't leak into adjacent columns. */
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.sectionLabel {
+  position: absolute;
+  top: 4vh;
+  left: 5vw;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5C3D1E;
+}
+
+.sectionLabel span {
+  border-bottom: 1px solid var(--gold-deep);
+  padding-bottom: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Vertical timeline (left side of pinned scene)
+ *
+ * A film-projector / audio-wave style indicator: a column of
+ * evenly-spaced dashes, a moving active dot, and a list of project
+ * names whose `data-active` attribute flips in lockstep with the
+ * pinned scene. The active dot is a single element positioned by
+ * the `--progress` CSS var (0..1), which GSAP writes from the
+ * ScrollTrigger onUpdate — so the dot, the active name, and the
+ * active folio are all driven by the same scroll position.
+ * ------------------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  display: flex;
+  /* Center the whole row vertically inside the 100vh sticky scene
+     so the timeline sits next to the folio's vertical center. */
+  align-items: center;
+  gap: 18px;
+  height: 100%;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.timelineRail {
+  position: relative;
+  width: 56px;
+  /* Fixed height that matches the list's content (3 items × 16px
+     line + 2 × 14px gap ≈ 76px). The dashes fill this column and
+     the moving indicator at `top: calc(var(--progress) * 100%)`
+     tracks the active item precisely. */
+  flex: 0 0 56px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(43, 31, 18, 0.35) 0px,
+    rgba(43, 31, 18, 0.35) 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+}
+
+.timelineIndicator {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--progress, 0) * 100%);
+  /* Anchor the dot to the center of the nearest dash by offsetting
+     half a dash cycle. The active "tick" is wider than the dashes
+     so it reads as a moving mark against the static column. */
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--cinnabar) 30%,
+    var(--cinnabar) 70%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 0 4px rgba(139, 46, 46, 0.18),
+    0 0 12px rgba(139, 46, 46, 0.45);
+  /* GSAP writes --progress every frame, so we don't transition. */
+  transition: none;
+  /* Render above the dashes. */
+  z-index: 2;
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  /* Tight cluster — no `height: 100%` and no `space-between`. The
+     parent grid uses `align-items: center`, so the list (and the
+     rail column next to it) center vertically next to the folio.
+     `gap` controls the spacing between items. */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 14px;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: baseline;
+  gap: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.4s ease, color 0.4s ease;
+}
+
+.timelineItem[data-active="true"] {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.timelineNumeral {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #5C3D1E;
+}
+
+.timelineItem[data-active="true"] .timelineNumeral {
+  color: var(--cinnabar);
+}
+
+.timelineName {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------------------------------------------------------------------
+ * Folio stack (right side of pinned scene)
+ * ------------------------------------------------------------------------- */
+.folioStack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.folio {
+  position: absolute;
+  inset: 0;
+  /* Flex column. Content starts at the top. The bullet list absorbs
+     any remaining vertical space (`flex: 1`) so shorter folios
+     have an extended bullet list area and longer folios (Hope Box)
+     don't leave an empty gap. The card itself stays at inset: 0
+     so all folios share the same bounding box for the cross-fade. */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  /* Asymmetric padding leaves room for the red margin line on the
+     left (the line itself is drawn by `::before` below). */
+  padding: 24px 32px 20px 80px;
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Notebook-paper fill: opaque parchment, no glass, no blur.
+     Lined paper effect is layered on top via repeating-linear-
+     gradients; the red margin is drawn by `::before`. */
+  background-color: #F2E4CF;
+  border: 1.5px solid #171411;
+  border-radius: 2px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  font-family: "Courier New", Courier, monospace;
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+.folio::-webkit-scrollbar { display: none; }
+
+/* Red margin line on the left — drawn as a vertical gradient that
+   runs the full height of the folio, ~72px from the left edge. The
+   line is solid red, no dashing. */
+.folio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 72px;
+  width: 1.5px;
+  background: rgba(200, 58, 58, 0.65);
+  pointer-events: none;
+}
+
+/* Lined-paper background — horizontal rules, 32px apart, sitting
+   behind the content. Drawn as a single repeating-linear-gradient
+   so it tiles edge-to-edge with no image assets. */
+.folio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(23, 20, 17, 0.16) 31px,
+    rgba(23, 20, 17, 0.16) 32px
+  );
+  background-position: 0 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep folio content above the ruled lines + margin. */
+.folio > * {
+  position: relative;
+  z-index: 1;
+}
+
+.folio[data-active="true"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.folioEmpty {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 40px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Folio content — monospace, lined-paper-friendly
+ * ------------------------------------------------------------------------- */
+.folioHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5C3D1E;
+  border-bottom: 1px dashed rgba(23, 20, 17, 0.25);
+  padding-bottom: 8px;
+}
+
+.folioCategory {
+  font-weight: 700;
+}
+
+.folioYear {
+  font-style: normal;
+  color: var(--ink-soft);
+}
+
+.folioTitle {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(36px, 4.2vw, 56px);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.folioDescription {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 70ch;
+}
+
+.folioStack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 6px;
+}
+
+.folioTag {
+  flex: 0 0 auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1.5px solid #171411;
+  border-radius: 0;
+  color: var(--ink);
+  background-color: #E9DCB8;
+  box-shadow: 2px 2px 0 rgba(44, 26, 14, 0.18);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.folioPoints {
+  margin: 0;
+  padding-left: 18px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  /* The bullet list absorbs all remaining vertical space inside the
+     card, so the bullets spread from the bottom of the stack tags
+     to the top of the "View project" link. With `space-between`,
+     the first bullet sits just below the tags and the last bullet
+     sits just above the link — no empty gap at either end. */
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Small inner padding so the first/last bullets aren't pressed
+     against the card edges. */
+  padding: 4px 0;
+}
+
+.folioPoints li {
+  margin: 0;
+}
+
+/* No spacer needed — the bullet list itself absorbs the gap. */
+.folioSpacer {
+  display: none;
+}
+
+.folioLink {
+  align-self: flex-start;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cinnabar);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cinnabar);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.folioLink:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduced motion
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .introHeading {
+    opacity: 1;
+    transform: none;
+  }
+  .folio {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sceneSticky {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 2vh;
+  }
+  /* On mobile the timeline becomes a horizontal rail at the top
+     of the pinned scene — same dashed column, rotated 90°. The
+     moving indicator slides along the left→right axis instead
+     of top→bottom. */
+  .timeline {
+    grid-template-columns: 1fr;
+    grid-template-rows: 28px 1fr;
+    height: auto;
+  }
+  .timelineRail {
+    width: 100%;
+    height: 28px;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(43, 31, 18, 0.35) 0px,
+      rgba(43, 31, 18, 0.35) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+    background-position: center;
+    background-size: 100% 1px;
+  }
+  .timelineIndicator {
+    top: 50%;
+    left: calc(var(--progress, 0) * 100%);
+    width: 4px;
+    height: 18px;
+  }
+  .timelineList {
+    flex-direction: row;
+    overflow-x: auto;
+    height: auto;
+  }
+  .timelineItem {
+    flex: 1;
+    min-width: 0;
+  }
+  .timelineName {
+    white-space: normal;
+  }
+  .folio {
+    padding: 28px 22px 24px;
+  }
+  .waxSeal {
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+    top: -12px;
+    right: -10px;
+  }
+  .introHeading {
+    font-size: clamp(32px, 9vw, 56px);
+  }
+  .upcomingGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Upcoming Projects — non-pinned, no scrubbing. Same glass + paper
+ * grain as the folios but a quieter "draft" treatment (dashed border,
+ * status pill, no wax-seal). The heading reuses the intro's 3D-scrub
+ * animation, so the two halves of the section read as one continuous
+ * gesture: title fades in, you scrub through the folios, the next
+ * title fades in, and the upcoming cards sit beneath.
+ * ------------------------------------------------------------------------- */
+.upcoming {
+  position: relative;
+  padding: 12vh 6vw 16vh;
+  text-align: center;
+}
+
+.upcomingSub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 14px;
+}
+
+.upcomingHeading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 7vw, 96px);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0 0 64px;
+  text-transform: uppercase;
+  /* Same starting state as .introHeading — the gsap.fromTo
+     animation drives opacity, y, scale, and rotateX. */
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  transform-origin: center top;
+}
+
+.upcomingGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1280px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+/* Wider viewports accommodate 6 cards as a 3 + 3 grid, even rows. */
+@media (min-width: 1024px) {
+  .upcomingGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .upcomingGrid > li:nth-child(1),
+  .upcomingGrid > li:nth-child(2),
+  .upcomingGrid > li:nth-child(3),
+  .upcomingGrid > li:nth-child(4),
+  .upcomingGrid > li:nth-child(5),
+  .upcomingGrid > li:nth-child(6) {
+    grid-column: span 2;
+  }
+}
+
+.upcomingCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 26px 24px;
+  /* Same glass treatment as the folios, but a dashed border and
+     lower opacity reads as "draft / work-in-progress". */
+  background-color: rgba(246, 232, 211, 0.42);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px dashed rgba(43, 31, 18, 0.32);
+  border-radius: 6px;
+  box-shadow:
+    0 12px 28px rgba(23, 20, 17, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  /* Subtle paper grain on top of the glass, matching the folios. */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.27  0 0 0 0 0.19  0 0 0 0 0.07  0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px;
+  background-repeat: repeat;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upcomingCard:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 36px rgba(23, 20, 17, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.upcomingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  border-bottom: 1px solid rgba(43, 31, 18, 0.2);
+  padding-bottom: 8px;
+}
+
+.upcomingStatus {
+  font-weight: 600;
+}
+
+.upcomingNumeral {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--cinnabar);
+}
+
+.upcomingTitle {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.upcomingBlurb {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .upcomingHeading {
+    opacity: 1;
+    transform: none;
+  }
+  .upcomingCard {
+    transition: none;
+  }
+}

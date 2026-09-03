@@ -1,0 +1,150 @@
+/* ---------------------------------------------------------------------------
+ * GlowBorderCard — animated golden border-trail card
+ *
+ *   Layer stack (back to front):
+ *     1. .ambient   — a blurred copy of the trail, gives the soft halo
+ *     2. .trail     — the rotating conic-gradient beam (the "comet")
+ *     3. .face      — solid dark card body, masks the conic center
+ *                     so only the perimeter glows
+ *   Children render inside .face, never bleed into the trail layer.
+ *
+ *   The trail is a conic-gradient with one small bright slice and the
+ *   rest transparent. Rotating the layer makes that slice travel around
+ *   the perimeter. Speed is driven by `--trail-duration` (set inline
+ *   from the React component), so the same keyframe runs at the
+ *   resting speed and the hover speed.
+ * ------------------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  padding: 1px;
+  border-radius: 6px;
+  isolation: isolate;
+  display: block;
+  /* Cursor pointer if the card is clickable. The component sets
+     onClick on the same element so the entire surface is the target. */
+  cursor: pointer;
+}
+
+@property --trail-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ── Layer 1: ambient halo ─────────────────────────────────────────
+   A duplicate of the trail, scaled up and blurred via drop-shadow.
+   It sits behind the trail/face and bleeds out into the page.
+
+   We use the same conic-gradient + rotate animation, but offset the
+   start so the halo and the trail don't perfectly overlap (the halo
+   reads as a wider, softer version of the beam). */
+.ambient {
+  position: absolute;
+  inset: -7px;
+  z-index: 0;
+  padding: 1px;
+  border-radius: 9px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--trail-angle),
+    transparent 0deg 276deg,
+    rgba(216, 169, 107, 0.14) 290deg,
+    rgba(255, 215, 128, 0.72) 305deg,
+    rgba(216, 169, 107, 0.2) 326deg,
+    transparent 342deg 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(6px);
+  opacity: calc(var(--glow-opacity, 0.55) * 0.55);
+  animation: glow-trail-spin var(--trail-duration, 5s) linear infinite;
+  animation-delay: var(--trail-delay, 0s);
+  will-change: opacity, --trail-angle;
+}
+
+/* ── Layer 2: sharp trail (the actual beam) ────────────────────────
+   The conic-gradient is the same shape as the ambient, just
+   un-blurred, with tighter opacity stops. The face on top masks
+   the center, leaving only the rim lit. */
+.trail {
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  padding: 1px;
+  border-radius: 7px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--trail-angle),
+    rgba(80, 60, 30, 0.55) 0deg 276deg,
+    rgba(216, 169, 107, 0.18) 290deg,
+    #ffe3a3 304deg,
+    #d8a96b 314deg,
+    rgba(216, 169, 107, 0.18) 329deg,
+    rgba(80, 60, 30, 0.55) 344deg 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 4px rgba(255, 211, 112, 0.45));
+  animation: glow-trail-spin var(--trail-duration, 5s) linear infinite;
+  animation-delay: var(--trail-delay, 0s);
+  will-change: --trail-angle;
+}
+
+/* ── Layer 3: face ─────────────────────────────────────────────────
+   The solid card body. Sits on top of the trail and masks the conic
+   center, so only a thin lit arc is visible on the perimeter. */
+.face {
+  position: relative;
+  z-index: 2;
+  border-radius: 4px;
+  margin: 1px;
+  background-color: rgba(20, 14, 6, 0.96);
+  /* A soft inner border (sepia → black) so the face has its own
+     edge even where the trail isn't currently lit. */
+  border: 1px solid rgba(80, 60, 30, 0.6);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.5);
+  padding: 18px 20px;
+  color: #f5efde;
+  font-family: var(--font-sharetech), monospace;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────────
+   The conic gradient is drawn at 0°, 30°, 60°, 90° of the slice.
+   Rotating the layer 360° sends the slice around the perimeter
+   once per cycle. Linear timing gives a steady, non-easing beam. */
+@keyframes glow-trail-spin {
+  from { --trail-angle: 0deg; }
+  to   { --trail-angle: 360deg; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────
+   Replace the spinning beam with a static, evenly-lit gold ring
+   so users with prefers-reduced-motion still get the "active"
+   visual without the animation. */
+@media (prefers-reduced-motion: reduce) {
+  .ambient,
+  .trail {
+    animation: none !important;
+  }
+  /* Static conic ring — bright all the way around. */
+  .trail {
+    background: #d8a96b;
+  }
+  .ambient {
+    opacity: 0.4;
+  }
+}
+
+/* ── Paused by the visibility gate ─────────────────────────────────
+   The `useAnimationGate` hook in `GlowBorderCard.tsx` mirrors the
+   "should animate" boolean onto `data-animating`. When it's
+   `false` (card off-screen or tab hidden), we pause the
+   conic-gradient keyframe so the GPU isn't asked to redraw the
+   trail every frame. The current frame is held in place. */
+.card[data-animating="false"] .ambient,
+.card[data-animating="false"] .trail {
+  animation-play-state: paused;
+}

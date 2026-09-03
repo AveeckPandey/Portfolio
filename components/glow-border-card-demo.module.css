@@ -1,0 +1,114 @@
+/* ---------------------------------------------------------------------------
+ * GlowBorderCardDemo — showcase layout for the GlowBorderCard.
+ *
+ *   Pure presentation — a dark backdrop, a small editorial header, and
+ *   a 2-column grid of cards. The grid gap is intentionally small so
+ *   the cards' halos blend into each other on hover (intentional —
+ *   shows the cards can sit close together without losing the effect).
+ * ------------------------------------------------------------------------- */
+
+.demo {
+  position: relative;
+  padding: 80px 24px;
+  /* Dark warm backdrop so the gold trail reads strongly. */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(80, 50, 20, 0.4), transparent 60%),
+    #0c0805;
+  min-height: 80vh;
+}
+
+.head {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  text-align: center;
+  color: #f5efde;
+  font-family: var(--font-sharetech), monospace;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255, 215, 0, 0.7);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  color: #fff8e0;
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.4);
+}
+
+.lede {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(245, 239, 222, 0.7);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Inner content classes — passed to GlowBorderCard via className.
+   The face is the visible card surface; we just style its children. */
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Override the default padding from .face so we control spacing. */
+  padding: 0 !important;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.metric {
+  font-family: var(--font-sharetech), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffd758;
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.06);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff8e0;
+  letter-spacing: 0.02em;
+}
+
+.cardDesc {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+  color: rgba(245, 239, 222, 0.72);
+  letter-spacing: 0.01em;
+}
