@@ -46,12 +46,6 @@ export interface HeroContent {
   ctaHref: string;
 }
 
-export interface AboutContent {
-  heading: string;
-  paragraphs: string[];
-  highlights: string[];
-}
-
 export interface PortfolioData {
   identity: {
     title: string;
@@ -60,36 +54,8 @@ export interface PortfolioData {
     metaDescription: string;
   };
   hero: HeroContent;
-  about: AboutContent;
   expertise: ExpertiseItem[];
   projects: (Project | AIProject)[];
   experience: ExperienceItem[];
   skills: SkillCategory[];
-  crossLink: {
-    label: string;
-    href: string;
-  };
-}
-
-export interface ThemeTokens {
-  name: string;
-  background: string;
-  foreground: string;
-  primary: string;
-  primaryFg: string;
-  secondary: string;
-  secondaryFg: string;
-  accent: string;
-  accentFg: string;
-  surface: string;
-  surfaceFg: string;
-  border: string;
-  muted: string;
-  mutedFg: string;
-  card: string;
-  cardFg: string;
-  shadow: string;
-  navBg: string;
-  navBorder: string;
-  dotOverlayColor: string;
 }

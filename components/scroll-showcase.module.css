@@ -38,7 +38,7 @@
  * heading sits directly on the body background.
  * ------------------------------------------------------------------------- */
 .introBackdrop {
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +70,78 @@
   opacity: 0;
   transform: translateY(40px) scale(0.92);
   transform-origin: center top;
+}
+
+/* ---------------------------------------------------------------------------
+ * Intro quote — Heraclitus. Sits below the welcome heading as the
+ * section's thematic centerpiece: oversized display serif, a giant
+ * decorative open-quote, a soft gold halo, and a 3D scrub-in that
+ * matches the heading's gesture. The cite sits as a small caps line
+ * with a gold rule of its own so the attribution reads as a
+ * separate stamp.
+ * ------------------------------------------------------------------------- */
+.introQuote {
+  position: relative;
+  margin: 48px auto 0;
+  padding: 78px 56px 38px;
+  max-width: 820px;
+  text-align: center;
+  border-top: 1px solid var(--gold-deep);
+  border-bottom: 1px solid var(--gold-deep);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(184, 146, 58, 0.18) 0%,
+    rgba(184, 146, 58, 0.05) 55%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 28px rgba(184, 146, 58, 0.22),
+    inset 0 0 24px rgba(184, 146, 58, 0.08);
+  opacity: 0;
+  transform: translateY(60px) scale(0.88);
+  transform-origin: center top;
+}
+
+.introQuoteMark {
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--gold);
+  background: var(--parchment);
+  padding: 0 18px;
+  text-shadow:
+    0 0 18px rgba(184, 146, 58, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.introQuoteText {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: 0.005em;
+  text-shadow: 0 0 14px rgba(184, 146, 58, 0.18);
+}
+
+.introQuoteCite {
+  display: inline-block;
+  margin-top: 22px;
+  padding-top: 14px;
+  font-family: "Courier New", Courier, monospace;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  border-top: 1px dashed rgba(138, 108, 32, 0.45);
 }
 
 /* ---------------------------------------------------------------------------
@@ -209,26 +281,33 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--ink-soft);
+  color: #ffffff;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.7;
   transition: opacity 0.4s ease, color 0.4s ease;
 }
 
 .timelineItem[data-active="true"] {
   opacity: 1;
-  color: var(--ink);
+  color: #ffffff;
+  text-shadow:
+    0 0 6px rgba(255, 70, 70, 0.9),
+    0 0 14px rgba(255, 40, 40, 0.7);
 }
 
 .timelineNumeral {
   font-family: "Courier New", Courier, monospace;
   font-size: 16px;
   letter-spacing: 0;
-  color: #5C3D1E;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 60, 60, 0.8);
 }
 
 .timelineItem[data-active="true"] .timelineNumeral {
-  color: var(--cinnabar);
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(255, 80, 80, 1),
+    0 0 18px rgba(255, 30, 30, 0.85);
 }
 
 .timelineName {
@@ -237,6 +316,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 60, 60, 0.7);
 }
 
 /* ---------------------------------------------------------------------------
@@ -464,6 +545,10 @@
  * ------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .introHeading {
+    opacity: 1;
+    transform: none;
+  }
+  .introQuote {
     opacity: 1;
     transform: none;
   }

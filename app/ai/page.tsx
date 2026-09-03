@@ -11,7 +11,6 @@ import Footer from "@/components/Footer";
 import TearDivider from "@/components/TearDivider";
 import StructuredData from "@/components/StructuredData";
 import aiData from "@/content/ai";
-import { aiTheme } from "@/lib/themes";
 
 export const metadata: Metadata = {
   title: "Aveeck Pandey — AI Engineer",
@@ -31,15 +30,14 @@ export const metadata: Metadata = {
 
 export default function AIPage() {
   const data = aiData;
-  const theme = aiTheme;
 
   return (
     <>
     <StructuredData type="ai" />
-    <PortfolioPage data={data} theme={theme}>
+    <PortfolioPage>
       <Navbar />
-      <Hero hero={data.hero} crossLink={data.crossLink} />
-      <About about={data.about} />
+      <Hero hero={data.hero} />
+      <About />
       <TearDivider />
       <Expertise expertise={data.expertise} title="AI Expertise" />
       <TearDivider />

@@ -1,15 +1,12 @@
 "use client";
 
 import { type ReactNode, useEffect, useState } from "react";
-import type { PortfolioData, ThemeTokens } from "@/lib/types";
 
 interface PortfolioPageProps {
-  data: PortfolioData;
-  theme: ThemeTokens;
   children: ReactNode;
 }
 
-export default function PortfolioPage({ data, theme, children }: PortfolioPageProps) {
+export default function PortfolioPage({ children }: PortfolioPageProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

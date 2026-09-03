@@ -38,7 +38,7 @@ export default function AristotleSection() {
     >
       <article
         data-paper-id="aristotle"
-        className="paper-ruled aristotle-sheet relative mx-auto"
+        className="paper-ruled relative mx-auto"
         style={{
           // Wide horizontal sheet, same physical language as the
           // other papers in the stack. Full-page height so once the

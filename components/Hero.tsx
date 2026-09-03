@@ -47,7 +47,7 @@ const fallingWords = [
   { text: "products", y: 18, rotate: -3 },
 ];
 
-export default function Hero({ hero }: { hero: any; crossLink?: { label: string; href: string } }) {
+export default function Hero({ hero }: { hero: any }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -60,10 +60,27 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
         backgroundColor: "transparent",
       }}
     >
+      {/* feDisplacementMap softening layer. The body's grunge webp
+         + dot grid is very high-contrast, which competes with the
+         Hero text. This absolute layer sits behind the content and
+         runs the SVG #paper-grunge filter from app/layout.tsx,
+         bending the underlying texture's highlights so the noise
+         reads as paper grain rather than pixel grit. `pointer-events:
+         none` keeps it from intercepting clicks. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 paper-grunge"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(200,178,147,0.55) 0%, rgba(242,228,207,0.35) 60%, rgba(200,178,147,0.55) 100%)",
+          mixBlendMode: "multiply",
+        }}
+      />
+
       {/* Side rails — editorial */}
       <div className="pointer-events-none absolute left-0 top-0 z-20 hidden h-full w-12 border-r-2 border-[#171411]/10 md:flex md:flex-col md:items-center md:justify-between md:py-32">
         <div className="rotate-180 font-mono text-[10px] font-bold uppercase tracking-widest text-[#171411]/50" style={{ writingMode: "vertical-rl" }}>
-          Aveeck Pandey — Software & AI Engineer
+          AveeckPandey — Software & AI Engineer
         </div>
         <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#171411]/50" style={{ writingMode: "vertical-rl" }}>
           Scroll ↓
@@ -101,6 +118,14 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
           {/* LEFT — Name + identity */}
           <div className="lg:col-span-7">
+            <div
+              className="relative -ml-3 -mt-3 px-6 py-8 md:-ml-6 md:px-10 md:py-10"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? "translateY(0)" : "translateY(8px)",
+                transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
+              }}
+            >
             {/* Eyebrow */}
             <div
               className="mb-6 inline-flex items-center gap-2 border-2 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
@@ -119,7 +144,7 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
 
             {/* Name — huge editorial type */}
             <h1
-              className="mb-2 font-sans font-black uppercase leading-[0.85] tracking-[-0.04em]"
+              className="mb-2 font-sans font-black uppercase leading-[0.85] tracking-[-0.04em] text-on-grunge"
               style={{ color: INK, fontSize: "clamp(3.5rem, 11vw, 10rem)" }}
             >
               <span className="block overflow-hidden">
@@ -146,7 +171,7 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
               style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.8s ease 0.7s" }}
             >
               <div className="h-[3px] w-16" style={{ backgroundColor: INK }} />
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em]" style={{ color: INK }}>
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-on-grunge" style={{ color: INK }}>
                 <ScrambleText text="Engineer · Problem Solver · Builder" duration={1000} />
               </span>
             </div>
@@ -235,6 +260,7 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
               </a>
             </div>
 
+            </div>
           </div>
 
           {/* RIGHT — Visual collage */}
@@ -268,11 +294,11 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
                     className="absolute -top-3 left-3 border-2 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider"
                     style={{ borderColor: INK, backgroundColor: YELLOW, color: INK }}
                   >
-                    Fig. 01 — The Engineer
+                    Fig. 01 — THE THINKING
                   </div>
                 </div>
                 <div className="mt-3 text-center font-mono text-[9px] font-bold uppercase tracking-widest" style={{ color: INK, opacity: 0.6 }}>
-                  ↳ Aveeck, 2026
+                  ↳ Auguste Rodin, 1904
                 </div>
               </div>
 
@@ -382,15 +408,6 @@ export default function Hero({ hero }: { hero: any; crossLink?: { label: string;
           </div>
         </div>
 
-        <style>{`
-          @keyframes ticker-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            [data-ticker-track] { animation: none !important; }
-          }
-        `}</style>
       </div>
 
     </section>

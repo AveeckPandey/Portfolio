@@ -49,71 +49,86 @@ const PROJECTS: ReadonlyArray<Project> = [
     id: "yafavanam",
     numeral: "I",
     name: "YAFA VANAM",
-    category: "Full-Stack · AWS",
+    category: "Full-Stack Beauty E-commerce",
     year: "MMXXV",
     description:
-      "Developed Yafa Vanam as a secure, scalable full-stack application using Next.js for responsive frontend development, server-side rendering, backend API routes, and application logic. Built reusable UI components and secure APIs for efficient communication between the frontend, backend, and cloud database.",
+      "Built and deployed a full-stack beauty e-commerce platform with a Next.js/TypeScript frontend, Go commerce backend, and Python FastAPI service. Covered end-to-end shopping features product catalogues, authentication, cart, checkout, payments, orders, inventory, and reviews. Designed a scalable AWS architecture using CloudFront, ALB, private EC2s, RDS Multi-AZ, S3, and VPC networking. Implemented Lambda functions for post-signup welcome coupons and order-confirmation emails via SES, with Secrets Manager, IAM, CloudWatch monitoring, and CI/CD pipelines throughout.",
     stack: [
       "Next.js",
       "TypeScript",
+      "Go",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Amazon CloudFront",
+      "Amazon ALB",
       "Amazon EC2",
       "Amazon RDS",
       "Amazon S3",
+      "AWS Lambda",
+      "Amazon SES",
+      "Amazon Cognito",
       "AWS IAM",
       "AWS CloudWatch",
       "AWS VPC",
-      "Jenkins",
+      "AWS Secrets Manager",
     ],
     points: [
-      "Built the frontend and backend with Next.js (SSR + API routes)",
-      "Used EC2, RDS, S3, IAM, CloudWatch, and VPC for hosting, data storage, access control, monitoring, and network security",
-      "Designed secure database schemas and optimized queries using Amazon RDS",
-      "Implemented RAG-based AI functionality for intelligent, context-aware responses",
-      "Applied application and cloud security practices across APIs, database access, and AWS IAM permissions",
-      "Automated testing and deployment pipelines with Jenkins",
+      "Built responsive storefront and dashboards with Next.js + TypeScript, backed by a Go commerce service and Python FastAPI for ancillary workflows",
+      "Developed product catalogues, auth, carts, checkout, payment, orders, inventory, reviews, and personalised storefronts end-to-end",
+      "Designed a multi-AZ AWS deployment with CloudFront, ALB, private EC2, RDS, S3, Secrets Manager, IAM, CloudWatch, and VPC",
+      "Implemented AWS Lambda for Cognito post-sign-up welcome coupons and order-confirmation emails via Amazon SES",
+      "Hardened APIs, data, and IAM with encryption, secrets management, and continuous monitoring",
+      "Automated build, test, and deploy with a CI/CD pipeline wired into the AWS estate",
     ],
     link: { label: "View project", href: "#" },
   },
   {
     id: "hopebox",
     numeral: "II",
-    name: "HOPE BOX",
-    category: "Full-Stack Mobile · Firebase",
+    name: "HOPEBOX",
+    category: "Full-Stack Mobile · NGO Logistics",
     year: "MMXXV",
     description:
-      "Developed HopeBox as a comprehensive, cross-platform mobile inventory and supply chain platform for NGOs and relief organizations using React Native, Expo, and TypeScript for responsive mobile frontend development, device hardware integration, and type-safe application logic. Built reusable UI components and an intuitive admin-configurable dashboard to manage complex commodity catalogs—including food, medical, hygiene, therapeutic, and agricultural supplies—alongside dynamic box templates, batch tracking, and real-time expiration visibility.",
+      "Built HopeBox, a full-stack mobile inventory and QR logistics application for NGOs and relief organisations using React Native, Expo, TypeScript, Firebase Authentication, and Cloud Firestore. Developed an admin-configurable commodity catalogue covering food, medical, hygiene, therapeutic, and agricultural supplies, with reusable box templates, batch and expiry tracking, and real-time inventory visibility. Implemented QR-based box creation, label printing, camera scanning, and lifecycle tracking from storage through dispatch and return. Used Firestore real-time synchronization and atomic transactions to maintain stock accuracy, prevent negative inventory, and avoid concurrent dispatch conflicts. Added dashboards, authentication, offline-aware behaviour, dark mode, English/Hindi and More Languages support, error handling, and Jest tests.",
     stack: [
       "React Native",
       "Expo",
       "TypeScript",
       "Firebase Auth",
       "Cloud Firestore",
+      "QR Scanning",
+      "Label Printing",
       "Jest",
     ],
     points: [
-      "Built the cross-platform mobile frontend and application logic with React Native (Expo) and TypeScript",
-      "Used Firebase Authentication and Cloud Firestore for secure identity management, real-time data synchronization, and serverless NoSQL storage",
-      "Designed atomic transaction workflows and offline-aware database schemas to guarantee inventory integrity and prevent concurrent dispatch errors",
-      "Implemented device hardware integrations for camera-based QR scanning and automated label printing for complete supply chain lifecycle tracking",
-      "Developed real-time analytics dashboards for stock target planning, box status monitoring, and shortage identification",
-      "Applied comprehensive UI/UX practices including English/Hindi localization and dynamic theming for diverse field environments",
-      "Automated unit testing for complex logistics algorithms, batch tracking, and inventory calculations using Jest",
+      "Built the cross-platform mobile app with React Native, Expo, and TypeScript for NGO field operations",
+      "Developed an admin-configurable commodity catalogue (food, medical, hygiene, therapeutic, agricultural) with reusable box templates",
+      "Implemented QR-based box creation, label printing, camera scanning, and full lifecycle tracking",
+      "Used Firestore real-time sync + atomic transactions to prevent negative stock and concurrent dispatch conflicts",
+      "Added real-time dashboards, batch & expiry tracking, authentication, offline-aware behaviour, and dark mode",
+      "Delivered English/Hindi and additional-language localization with broad error handling and Jest unit tests",
     ],
     link: { label: "View project", href: "#" },
   },
   {
-    id: "nexuschat",
+    id: "nexussecure",
     numeral: "III",
-    name: "HARPOCRATES",
-    category: "Full-Stack Mobile · AWS",
+    name: "NEXUS SECURE",
+    category: "Full-Stack Mobile · Cloud · E2EE",
     year: "MMXXV",
     description:
-      "Developed Harpocrates as a zero-knowledge, cross-platform mobile messaging application using React Native (Expo) for responsive mobile frontend development, device-native API integration, and high-performance application logic. Built reusable UI components with NativeWind and secure client-side workflows for efficient, encrypted communication between mobile devices and the cloud backend.",
+      "Built a cross-platform zero-knowledge mobile messaging app using React Native, Expo, and NativeWind with C++ JSI bindings. Implemented on-device end-to-end encryption via X25519 key exchange, AES-256-GCM, Android Keystore, and iOS Keychain — the server routes ciphertext only. Developed WebSocket-based real-time messaging and designed stateless AWS infrastructure with EC2, ElastiCache Redis, S3, VPC, IAM, and CloudWatch. Automated native build validation, APK/AAB generation, and delivery using EAS Build and EAS Workflows.",
     stack: [
       "React Native",
       "Expo",
       "NativeWind",
       "C++ JSI",
+      "X25519",
+      "AES-256-GCM",
+      "Android Keystore",
+      "iOS Keychain",
       "Amazon EC2",
       "Amazon ElastiCache",
       "Amazon S3",
@@ -121,75 +136,95 @@ const PROJECTS: ReadonlyArray<Project> = [
       "AWS CloudWatch",
       "AWS VPC",
       "EAS Build",
+      "EAS Workflows",
     ],
     points: [
-      "Built the cross-platform mobile frontend and client logic with React Native (Expo)",
-      "Used EC2, ElastiCache, S3, IAM, CloudWatch, and VPC for stateless real-time hosting, connection management, access control, monitoring, and network security",
-      "Designed a zero-knowledge WebSocket architecture to route messages strictly as ciphertext without server-side decryption capabilities",
-      "Implemented on-device E2EE cryptographic functionality for mathematically secure, private communications",
-      "Applied application and hardware security practices across device keystores, JSI cryptography, and AWS IAM permissions",
-      "Automated native build compilation and deployment pipelines using Expo Application Services (EAS)",
+      "Built cross-platform mobile interfaces, real-time WebSocket communication, and device-native workflows with React Native + Expo",
+      "Designed stateless AWS infrastructure (EC2, ElastiCache Redis, S3, IAM, CloudWatch, VPC) for hosting, connection state, and access control",
+      "Implemented on-device E2EE with X25519 key exchange, Diffie-Hellman shared-secret derivation, and AES-256-GCM encryption",
+      "Secured device keys with Android Keystore and iOS Keychain — the server routes ciphertext only",
+      "Hardened application and infrastructure security across JSI crypto, device keystores, IAM, and network isolation",
+      "Automated native build validation, APK/AAB generation, dependency compilation, and delivery with EAS Build + EAS Workflows",
     ],
     link: { label: "View project", href: "#" },
   },
   {
-    id: "atlasledger",
+    id: "rag-assistant",
     numeral: "IV",
-    name: "ATLAS LEDGER",
-    category: "Full-Stack Web · TypeScript",
+    name: "RAG KNOWLEDGE ASSISTANT",
+    category: "AI · Backend · Production",
     year: "MMXXVI",
     description:
-      "Developed Atlas Ledger as a typed, end-to-end financial journaling platform using Next.js for server-rendered dashboards and React Server Components, with a strictly validated double-entry data model. Built reusable form primitives, optimistic mutation flows, and a real-time reconciliation engine that streams ledger deltas from a Postgres-backed event log.",
+      "Built a production-ready RAG assistant using Python, FastAPI, PostgreSQL with pgvector, Redis, and Amazon Bedrock. Designed a full ingestion-to-response pipeline with semantic chunking, vector retrieval, reranking, and citation-based answers. Added safeguards for relevance thresholds, prompt-injection filtering, conflict detection, and deterministic fallbacks. Secured multi-tenant access via PostgreSQL Row-Level Security and implemented circuit breakers, LLM failover, and automated evaluation suites for production reliability.",
     stack: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Prisma",
-      "tRPC",
-      "Zod",
-      "TanStack Query",
-      "Tailwind CSS",
-      "NextAuth",
-      "Vercel",
-    ],
-    points: [
-      "Built the server-rendered dashboard and route handlers with Next.js (App Router) and React Server Components",
-      "Modeled a strictly-validated double-entry ledger in PostgreSQL with Prisma, enforced by Zod schemas at every API boundary",
-      "Wired type-safe client ↔ server communication with tRPC and TanStack Query, including optimistic mutations for low-latency entry posting",
-      "Designed a real-time reconciliation engine that streams ledger deltas from a Postgres event log and surfaces imbalance diffs inline",
-      "Implemented authentication, role-based access, and audit trails using NextAuth alongside row-level guards in route handlers",
-      "Automated type-checking, migration review, and preview deploys on Vercel with a single CI workflow",
-    ],
-    link: { label: "View project", href: "#" },
-  },
-  {
-    id: "meridian",
-    numeral: "V",
-    name: "MERIDIAN",
-    category: "Full-Stack · AI · Cloud",
-    year: "MMXXVI",
-    description:
-      "Developed Meridian as a retrieval-augmented analytics workbench using Next.js for server-rendered report canvases and streaming chat, with a Python FastAPI service orchestrating embedding generation, vector retrieval, and structured tool calls. Built reusable chart primitives and a streaming agent runtime that grounds every answer in the user's connected data sources.",
-    stack: [
-      "Next.js",
-      "TypeScript",
       "Python",
       "FastAPI",
       "PostgreSQL",
       "pgvector",
-      "OpenAI",
-      "LangChain",
       "Redis",
-      "Docker",
-      "AWS ECS",
+      "Amazon Bedrock",
+      "Reranking",
+      "Row-Level Security",
+      "Evaluation Harness",
     ],
     points: [
-      "Built the streaming report canvas and chat surface with Next.js (App Router) and React Server Components",
-      "Designed a FastAPI orchestration service that owns embedding, retrieval, and tool-calling for the agent runtime",
-      "Modeled retrieval indexes with pgvector and PostgreSQL, including metadata filters and hybrid lexical + vector scoring",
-      "Wired LangChain tool-calling into a streaming agent that grounds responses in the user's connected data sources",
-      "Implemented a Redis-backed job queue for long-running analyses with cancelable, retry-aware workers in Docker",
-      "Deployed the FastAPI workers and Next.js app to AWS ECS behind an ALB with autoscaling and CloudWatch alarms",
+      "Built the end-to-end RAG pipeline: approved document ingestion, semantic chunking, embedding, metadata-filtered retrieval, reranking, and citation-based responses",
+      "Hardened answer quality with relevance thresholds, grounded-answer validation, conflict detection, prompt-injection filtering, document revocation, and deterministic fallbacks",
+      "Implemented secure multi-tenant access via signed tenant identity, PostgreSQL Row-Level Security, tenant-aware cache keys, and private internal APIs",
+      "Improved reliability and scale with caching, request coalescing, concurrency limits, circuit breakers, and LLM/database failover",
+      "Instrumented the system with telemetry and ran automated evaluation suites before promoting to production",
+      "Deployed on AWS using Amazon Bedrock for model access, with Redis and pgvector as the working memory layers",
+    ],
+    link: { label: "View project", href: "#" },
+  },
+  {
+    id: "support-inbox",
+    numeral: "V",
+    name: "AUTOMATED SUPPORT TRIAGE",
+    category: "Automation · AI · n8n",
+    year: "MMXXVI",
+    description:
+      "Supplier support inbox received high volumes of unstructured emails daily, requiring manual triage that slowed response times. I built an n8n automation pipeline, self-hosted on AWS EC2 with Docker, that watches the shared inbox via webhook, parses incoming emails, and runs AI-powered classification to label each ticket by intent — payment queries, onboarding issues, technical errors. Classified tickets are instantly routed to the correct queue before any human intervention. This eliminated manual first-touch triage for common categories, improved response consistency, and gave the support team a structured data foundation for future auto-reply and sentiment-tracking automations.",
+    stack: [
+      "n8n",
+      "Docker",
+      "Amazon EC2",
+      "Webhook",
+      "AI Classification",
+      "Email Parsing",
+    ],
+    points: [
+      "Identified manual triage as the bottleneck and designed an n8n automation pipeline as the fix",
+      "Self-hosted n8n on AWS EC2 with Docker; webhooks watch the shared support inbox in real time",
+      "Parsed incoming emails and ran AI-powered classification to label each ticket by intent (payment, onboarding, technical)",
+      "Routed classified tickets to the correct queue before any human intervention",
+      "Eliminated manual first-touch triage for common categories and improved response consistency",
+      "Established a structured data foundation for downstream auto-reply and sentiment-tracking automations",
+    ],
+    link: { label: "View project", href: "#" },
+  },
+  {
+    id: "linkedin-automation",
+    numeral: "VI",
+    name: "LINKEDIN JOB AUTOMATION",
+    category: "Automation · n8n",
+    year: "MMXXVI",
+    description:
+      "Manually publishing job listings across platforms is repetitive and error-prone at scale. I built an end-to-end automation pipeline using n8n that pulls structured job data from a source, formats it into platform-ready content, and automatically publishes listings to LinkedIn — without any manual intervention. The pipeline runs on a self-hosted AWS EC2 instance behind Docker and Caddy, triggered on demand or on schedule. Post formatting, field mapping, and publishing logic are fully automated, reducing time-to-publish from hours to seconds. The system is modular by design, making it straightforward to extend to additional job boards or social platforms.",
+    stack: [
+      "n8n",
+      "Docker",
+      "Caddy",
+      "Amazon EC2",
+      "LinkedIn API",
+    ],
+    points: [
+      "Replaced repetitive, error-prone manual posting with an end-to-end n8n automation pipeline",
+      "Pulled structured job data from a source and formatted it into platform-ready LinkedIn content",
+      "Published listings to LinkedIn without any manual intervention",
+      "Self-hosted n8n on AWS EC2 with Docker and Caddy; triggered on demand or on a schedule",
+      "Reduced time-to-publish from hours to seconds by automating formatting, field mapping, and publishing",
+      "Designed the system modularly so new job boards or social platforms can be added with minimal change",
     ],
     link: { label: "View project", href: "#" },
   },
@@ -258,45 +293,27 @@ export default function ScrollShowcase() {
   const progressRefs = useRef<Array<HTMLLIElement | null>>([]);
   const currentIdxRef = useRef(0);
   const lenisRef = useRef<Lenis | null>(null);
-  // Gate that flips `true` while the section is on-screen and the
-  // tab is visible. We use the boolean return value (not the
-  // ref-write path) here because this effect needs to re-run when
-  // the gate flips — Lenis/ScrollTrigger have to be (re)created
-  // each time the section comes back into view, so a stable
-  // `[]` dep array would leave them stuck uninitialized.
+  // Gate the continuous Lenis animation to the nearby section. The
+  // ScrollTriggers themselves are deliberately kept alive below: their pin
+  // spacer must exist before a navbar jump crosses this section, otherwise
+  // the document height changes in the middle of that smooth scroll.
   const active = useAnimationGate(rootRef, { rootMargin: "200px" });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const root = rootRef.current;
     if (!root) return;
-    if (!active) {
-      // Section is off-screen or the tab is hidden — skip the
-      // Lenis + ScrollTrigger setup entirely. The rAF tick,
-      // the Lenis instance, and the GSAP context are all
-      // untouched; nothing runs.
-      return;
-    }
 
     const ctx = gsap.context(() => {
-      // Lenis smooth scroll. Drives the GSAP ticker at 60fps.
-      const lenis = new Lenis({
-        duration: 1.2,
-        smoothWheel: true,
-      });
-      lenisRef.current = lenis;
-
-      const tick = (time: number) => lenis.raf(time * 1000);
-      gsap.ticker.add(tick);
-      gsap.ticker.lagSmoothing(0);
-
       // Pin the sticky scene inside the section while the user
-      // scrolls through the folios. One viewport per folio so the
-      // progress is intuitive — scroll one screen, advance one project.
+      // scrolls through the folios. We allocate 0.6 viewport of
+      // scroll per transition (not a full viewport). This trigger stays
+      // mounted even when the section is off-screen so its spacer keeps
+      // anchor destinations stable during long navbar scrolls.
       ScrollTrigger.create({
         trigger: root.querySelector("[data-scene-wrapper]") as HTMLElement,
         start: "top top",
-        end: () => `+=${(PROJECTS.length - 1) * window.innerHeight}`,
+        end: () => `+=${(PROJECTS.length - 1) * window.innerHeight * 0.6}`,
         pin: sceneStickyRef.current ?? false,
         scrub: 0.6,
         onUpdate: (self) => {
@@ -379,14 +396,34 @@ export default function ScrollShowcase() {
       });
     }, root);
 
+    // Create the pin spacer immediately, before a navbar link can start a
+    // long smooth scroll past this section.
+    ScrollTrigger.refresh();
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!active) return;
+
+    // Keep the smooth-scroll loop scoped to the nearby project scene; the
+    // permanent ScrollTriggers above preserve the layout while it is idle.
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+    });
+    lenisRef.current = lenis;
+
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+
     return () => {
-      const lenis = lenisRef.current;
-      if (lenis) {
-        gsap.ticker.remove((time) => lenis.raf(time * 1000));
-        lenis.destroy();
+      gsap.ticker.remove(tick);
+      lenis.destroy();
+      if (lenisRef.current === lenis) {
         lenisRef.current = null;
       }
-      ctx.revert();
     };
   }, [active]);
 
@@ -398,6 +435,16 @@ export default function ScrollShowcase() {
         <h1 data-3d-heading className={styles.introHeading}>
           <ScrambleText text="Welcome to the project section" duration={1100} />
         </h1>
+        <blockquote data-3d-heading className={styles.introQuote}>
+          <span className={styles.introQuoteMark} aria-hidden="true">
+            “
+          </span>
+          <p className={styles.introQuoteText}>
+            Day by day, what you choose, what you think and what you do is who
+            you become.
+          </p>
+          <cite className={styles.introQuoteCite}>— Heraclitus</cite>
+        </blockquote>
       </div>
 
       {/* Pinned folio scene. */}

@@ -117,9 +117,6 @@ export default function RootLayout({
                 yChannelSelector="G"
               />
             </filter>
-            <filter id="paper-soften" x="-2%" y="-2%" width="104%" height="104%">
-              <feGaussianBlur stdDeviation="0.6" />
-            </filter>
           </defs>
         </svg>
 

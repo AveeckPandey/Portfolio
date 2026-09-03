@@ -17,21 +17,6 @@ const softwareData: PortfolioData = {
     cta: "View Projects",
     ctaHref: "#projects",
   },
-  about: {
-    heading: "About Me",
-    paragraphs: [
-      "I'm a software engineer who thrives at the intersection of clean code and complex systems. My work spans the full stack — from designing resilient backend architectures and APIs to crafting responsive, performant frontends.",
-      "I care deeply about writing software that works reliably in production. That means thoughtful system design, solid testing practices, and infrastructure that scales without constant firefighting.",
-      "When I'm not writing code, I'm studying system design patterns, contributing to open-source tools, and exploring how software can solve real problems more elegantly.",
-    ],
-    highlights: [
-      "Full-stack development",
-      "System design & architecture",
-      "Cloud infrastructure",
-      "API design & development",
-      "Production-grade software",
-    ],
-  },
   expertise: [
     {
       title: "Backend Systems",
@@ -211,10 +196,6 @@ const softwareData: PortfolioData = {
       skills: ["Git", "CI/CD", "Monitoring", "Testing", "System Design", "Code Review", "Sentry"],
     },
   ],
-  crossLink: {
-    label: "Explore my AI Engineering work",
-    href: "/ai",
-  },
 };
 
 export default softwareData;

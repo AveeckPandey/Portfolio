@@ -26,6 +26,6 @@ const PaperStack = dynamic(
   }
 );
 
-export default function About(_props: { about?: unknown }) {
+export default function About() {
   return <PaperStack />;
 }

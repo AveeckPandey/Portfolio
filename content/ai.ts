@@ -17,21 +17,6 @@ const aiData: PortfolioData & { projects: AIProject[] } = {
     cta: "View AI Projects",
     ctaHref: "#projects",
   },
-  about: {
-    heading: "About Me",
-    paragraphs: [
-      "I'm an AI engineer who builds systems that work reliably in production — not just demos. My focus is on the full lifecycle of AI applications: data preparation, retrieval, generation, evaluation, and monitoring.",
-      "I specialize in RAG architectures, intelligent agents, and LLM-powered applications. I care about making AI systems that are accurate, auditable, and maintainable — not just impressive in a screenshot.",
-      "I believe the hardest part of AI isn't the model — it's the engineering around it. Data quality, retrieval precision, evaluation rigor, and production observability are where real AI products succeed or fail.",
-    ],
-    highlights: [
-      "RAG system architecture",
-      "LLM application development",
-      "AI agent design & orchestration",
-      "Vector search & retrieval",
-      "Production AI infrastructure",
-    ],
-  },
   expertise: [
     {
       title: "RAG Systems",
@@ -213,10 +198,6 @@ const aiData: PortfolioData & { projects: AIProject[] } = {
       skills: ["RAGAS", "DeepEval", "A/B Testing", "Grafana", "LangSmith Tracing"],
     },
   ],
-  crossLink: {
-    label: "Explore my Software Engineering work",
-    href: "/",
-  },
 };
 
 export default aiData;

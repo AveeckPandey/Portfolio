@@ -12,7 +12,6 @@ import Footer from "@/components/Footer";
 import TearDivider from "@/components/TearDivider";
 import StructuredData from "@/components/StructuredData";
 import softwareData from "@/content/software";
-import { softwareTheme } from "@/lib/themes";
 
 export const metadata: Metadata = {
   title: "Aveeck Pandey — Software Engineer",
@@ -32,14 +31,13 @@ export const metadata: Metadata = {
 
 export default function SoftwarePage() {
   const data = softwareData;
-  const theme = softwareTheme;
 
   return (
     <>
     <StructuredData type="software" />
-    <PortfolioPage data={data} theme={theme}>
+    <PortfolioPage>
       <Navbar />
-      <Hero hero={data.hero} crossLink={data.crossLink} />
+      <Hero hero={data.hero} />
       <TearDivider />
       {/*
         The About component renders the interactive 3-paper stack
@@ -51,7 +49,7 @@ export default function SoftwarePage() {
         it into a different section rather than letting it act as the
         sheet physically underneath the stack.
       */}
-      <About about={data.about} />
+      <About />
       <TearDivider />
       <Expertise expertise={data.expertise} title="Expertise" />
       <TearDivider />

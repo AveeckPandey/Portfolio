@@ -157,6 +157,29 @@ body.low-motion *::after {
     background-color: var(--muted);
     color: var(--muted-fg);
   }
+
+  /* ── feDisplacementMap / paper utilities ────────────────────────────
+     The body background is a heavy grunge webp + dot grid. Without
+     softening it, foreground type (especially the big Hero headline
+     and small mono labels) gets absorbed by the texture.
+
+     `.paper-grunge` runs the SVG #paper-grunge filter from layout.tsx
+     over an element. It bends highlights via feDisplacementMap so
+     they look like paper instead of pixel grit.
+
+     The overlay keeps the paper texture visible while the type remains
+     legible. */
+  .paper-grunge {
+    filter: url(#paper-grunge);
+  }
+  /* Soft text shadow used on top of grunge so headlines read clearly
+     without needing a full panel. Two layers: one tight for crispness,
+     one wider for ambient lift. */
+  .text-on-grunge {
+    text-shadow:
+      0 1px 0 rgba(246, 232, 211, 0.6),
+      0 2px 8px rgba(13, 11, 9, 0.18);
+  }
 }
 
 @keyframes hero-float-1 {
@@ -304,9 +327,6 @@ body.low-motion *::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-float-card { animation: none !important; }
   .hero-float-photo { animation: none !important; }
-  .hero-pulse-dot { animation: none !important; }
-  .paper-fall { animation: none !important; }
   .clip-sway  { animation: none !important; }
 }
