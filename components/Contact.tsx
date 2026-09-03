@@ -9,6 +9,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   // Mobile phones get fewer dots (larger pixelStep → ~40% fewer
   // particles) and a smaller canvas, which keeps the rAF loop cheap.
   const isMobile = useIsMobile();
@@ -20,6 +21,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMsg(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -30,9 +32,11 @@ export default function Contact() {
       if (data.success) {
         setSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
+      } else {
+        setErrorMsg(data.error || "Submission failed. Please check your credentials.");
       }
-    } catch {
-      // silent
+    } catch (err: any) {
+      setErrorMsg("Network error. Please try again or book a call.");
     } finally {
       setSubmitting(false);
     }
@@ -128,6 +132,12 @@ export default function Contact() {
                   <p className="mb-6 font-mono text-base leading-relaxed" style={{ color: "var(--muted-fg)" }}>
                     Fill out the form below and I&apos;ll get back to you.
                   </p>
+
+                  {errorMsg && (
+                    <div className="mb-4 border border-red-500 bg-red-100 p-3 font-mono text-xs font-bold text-red-800 rounded">
+                      ⚠️ {errorMsg}
+                    </div>
+                  )}
 
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
