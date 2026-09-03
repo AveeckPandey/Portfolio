@@ -335,6 +335,73 @@ const RETURN_START_DELAY_MS = 120;
 
 // ─── main component ─────────────────────────────────────────────────────────
 
+function MobileAboutBento() {
+  return (
+    <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6 md:hidden font-mono text-sm" aria-label="About Me">
+      {/* Header Badge */}
+      <div className="flex items-center justify-between border-b-2 border-dashed border-[#171411]/25 pb-3">
+        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#9A5A25]">
+          About Me · MMXXV
+        </span>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#8BBF65]/20 px-2.5 py-0.5 text-[10px] font-bold text-[#2C5E1A]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#8BBF65] animate-pulse" /> Available for Roles
+        </span>
+      </div>
+
+      {/* Card 1: Identity & Status */}
+      <div className="neo-border neo-shadow p-5 flex flex-col gap-3" style={{ backgroundColor: "#F2E4CF", borderColor: "#171411" }}>
+        <div className="flex items-center gap-3">
+          <div className="neo-border neo-shadow-sm flex h-12 w-12 shrink-0 items-center justify-center bg-[#171411] font-mono text-base font-bold text-[#F6E8D3]">
+            AP
+          </div>
+          <div>
+            <h3 className="font-mono text-lg font-bold uppercase text-[#171411]">Aveeck Pandey</h3>
+            <p className="font-mono text-xs text-[#9A5A25] font-semibold">Software & AI Engineer</p>
+          </div>
+        </div>
+        <p className="text-xs text-[#5C4A30] leading-relaxed border-t border-dashed border-[#171411]/20 pt-3">
+          I build robust, scalable software AND production AI systems — from backend services, APIs, and cloud infrastructure to RAG pipelines, intelligent agents, and LLM-powered applications.
+        </p>
+      </div>
+
+      {/* Card 2: Location & Education */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="neo-border neo-shadow p-4 flex flex-col gap-1.5" style={{ backgroundColor: "#F2E4CF", borderColor: "#171411" }}>
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#9A5A25]">Location</span>
+          <span className="font-mono text-xs font-bold text-[#171411]">Bengaluru, India</span>
+          <span className="font-mono text-[11px] text-[#5C4A30]">Remote-friendly</span>
+        </div>
+        <div className="neo-border neo-shadow p-4 flex flex-col gap-1.5" style={{ backgroundColor: "#F2E4CF", borderColor: "#171411" }}>
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#9A5A25]">Education</span>
+          <span className="font-mono text-xs font-bold text-[#171411]">SRM Institute of Science & Tech</span>
+          <span className="font-mono text-[11px] text-[#5C4A30]">B.Tech CS (2022 – 2026)</span>
+        </div>
+      </div>
+
+      {/* Card 3: Aristotle Quote */}
+      <div className="neo-border neo-shadow p-5 flex flex-col gap-3 text-center" style={{ backgroundColor: "#171411", color: "#F6E8D3", borderColor: "#171411" }}>
+        <span className="text-2xl font-serif text-[#D4A853]">&ldquo;</span>
+        <blockquote className="font-mono text-xs italic leading-relaxed text-[#F6E8D3]/90">
+          Knowing yourself is the beginning of all wisdom.
+        </blockquote>
+        <cite className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#D4A853] not-italic">— Aristotle</cite>
+      </div>
+
+      {/* Card 4: Focus Areas */}
+      <div className="neo-border neo-shadow p-4 flex flex-col gap-3" style={{ backgroundColor: "#F2E4CF", borderColor: "#171411" }}>
+        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#9A5A25]">Engineering Focus</span>
+        <div className="flex flex-wrap gap-1.5">
+          {["AI & RAG Systems", "LLM Applications", "Full-Stack Web", "Mobile & Expo", "Cloud Infra (AWS)", "n8n Automation", "Docker", "PostgreSQL"].map((skill) => (
+            <span key={skill} className="border border-[#171411] bg-[#FFFFFF] px-2 py-1 font-mono text-[10px] font-bold uppercase text-[#171411] neo-shadow-sm">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PaperStack() {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -1036,90 +1103,86 @@ export default function PaperStack() {
         {liveMessage}
       </p>
 
-      {/*
-        The scene is a stacking context. Inside it (from back to front):
-          1. Aristotle plate (z-index 5)   — present from frame 1, full
-             page height, positioned at the top just below the wire.
-          2. Wire SVG     (z-index 10)
-          3. Three paper assemblies (z-index 10/20/30, set per-paper)
-             — physically cover the Aristotle plate; once they fall, the
-             plate is revealed.
-      */}
-      <div
-        ref={sceneRef}
-        className="relative mx-auto"
-        style={{
-          maxWidth: "1200px",
-          minHeight: isMobile ? "min(135vh, 1250px)" : "min(140vh, 1250px)",
-          paddingBottom: isMobile ? "60px" : 0,
-        }}
-      >
-        {/* ── ARISTOTLE PLATE — BACK LAYER ── */}
+      {/* Mobile-only Bento Grid Bio vs Desktop 3-Paper Wire Stack */}
+      {isMobile ? (
+        <MobileAboutBento />
+      ) : (
         <div
-          aria-hidden="false"
-          className="absolute left-0 right-0"
-          style={{ top: "60px", zIndex: 5, pointerEvents: "none" }}
+          ref={sceneRef}
+          className="relative mx-auto"
+          style={{
+            maxWidth: "1200px",
+            minHeight: "min(140vh, 1250px)",
+            paddingBottom: 0,
+          }}
         >
-          <div className="relative mx-auto" style={{ maxWidth: "1200px" }}>
-            <AristotleSection />
+          {/* ── ARISTOTLE PLATE — BACK LAYER ── */}
+          <div
+            aria-hidden="false"
+            className="absolute left-0 right-0"
+            style={{ top: "60px", zIndex: 5, pointerEvents: "none" }}
+          >
+            <div className="relative mx-auto" style={{ maxWidth: "1200px" }}>
+              <AristotleSection />
+            </div>
           </div>
+
+          {/* ── WIRE SVG ── */}
+          <svg
+            aria-hidden="true"
+            className="absolute left-0 right-0 top-0 z-10 h-[40px] w-full"
+            viewBox="0 0 1200 40"
+            preserveAspectRatio="none"
+            style={{ pointerEvents: "none" }}
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="1200"
+              y2="0"
+              stroke="#171411"
+              strokeWidth={4}
+              strokeLinecap="round"
+            />
+            <circle cx="0" cy="0" r="6" fill="#1a1612" stroke="#000" strokeWidth={0.5} />
+            <circle cx="1200" cy="0" r="6" fill="#1a1612" stroke="#000" strokeWidth={0.5} />
+          </svg>
+
+          {/* ── PAPER ASSEMBLIES ── */}
+          {showPapers &&
+            PAPERS.map((paper, idx) => {
+              const paperIdx = idx as PaperStageIndex;
+              return (
+                <PaperAssembly
+                  key={paper.id}
+                  paper={paper}
+                  paperIdx={paperIdx}
+                  stage={stage}
+                  isMobile={isMobile}
+                  clipReleasingId={clipReleasingId}
+                  isAnimating={isAnimating}
+                  reducedMotion={reducedMotion}
+                  fallingId={fallingId}
+                  isFallen={fallenIds.includes(paper.id)}
+                  dragEnabled={dragEnabled}
+                  paperElRef={(el) => {
+                    paperElRefs.current[paper.id] = el;
+                  }}
+                  stringElRef={(el) => {
+                    stringElRefs.current[paper.id] = el;
+                  }}
+                  onAdvance={advanceLayer}
+                  onKeyDown={onKeyDown}
+                  onAnimationEnd={handlePaperAnimationEnd}
+                  onPaperPointerDown={onPaperPointerDown}
+                  isPhysicsDriven={
+                    sequence === "returning" || sequence === "settled"
+                  }
+                />
+              );
+            })}
         </div>
-
-        {/* ── WIRE SVG ── */}
-        <svg
-          aria-hidden="true"
-          className="absolute left-0 right-0 top-0 z-10 h-[40px] w-full"
-          viewBox="0 0 1200 40"
-          preserveAspectRatio="none"
-          style={{ pointerEvents: "none" }}
-        >
-          <line
-            x1="0"
-            y1="0"
-            x2="1200"
-            y2="0"
-            stroke="#171411"
-            strokeWidth={4}
-            strokeLinecap="round"
-          />
-          <circle cx="0" cy="0" r="6" fill="#1a1612" stroke="#000" strokeWidth={0.5} />
-          <circle cx="1200" cy="0" r="6" fill="#1a1612" stroke="#000" strokeWidth={0.5} />
-        </svg>
-
-        {/* ── PAPER ASSEMBLIES ── */}
-        {showPapers &&
-          PAPERS.map((paper, idx) => {
-            const paperIdx = idx as PaperStageIndex;
-            return (
-              <PaperAssembly
-                key={paper.id}
-                paper={paper}
-                paperIdx={paperIdx}
-                stage={stage}
-                isMobile={isMobile}
-                clipReleasingId={clipReleasingId}
-                isAnimating={isAnimating}
-                reducedMotion={reducedMotion}
-                fallingId={fallingId}
-                isFallen={fallenIds.includes(paper.id)}
-                dragEnabled={dragEnabled}
-                paperElRef={(el) => {
-                  paperElRefs.current[paper.id] = el;
-                }}
-                stringElRef={(el) => {
-                  stringElRefs.current[paper.id] = el;
-                }}
-                onAdvance={advanceLayer}
-                onKeyDown={onKeyDown}
-                onAnimationEnd={handlePaperAnimationEnd}
-                onPaperPointerDown={onPaperPointerDown}
-                isPhysicsDriven={
-                  sequence === "returning" || sequence === "settled"
-                }
-              />
-            );
-          })}
-      </div>
+      )}
 
       {/* Dev-only reset (disabled — was a debugging affordance for the
           interactive 3-paper scene; production visitors never saw it

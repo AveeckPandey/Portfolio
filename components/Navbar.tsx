@@ -68,6 +68,16 @@ export default function Navbar() {
   const navText = "#D8C6AC";
   const navForeground = "#F6E8D3";
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50"
@@ -179,10 +189,13 @@ export default function Navbar() {
 
         {/* Mobile: Hamburger */}
         <button
+          type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="neo-border neo-shadow flex h-10 w-10 items-center justify-center md:hidden cursor-pointer"
+          className="neo-border neo-shadow flex h-11 w-11 items-center justify-center md:hidden cursor-pointer"
           style={{ backgroundColor: "var(--surface)", color: navForeground }}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -191,6 +204,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
+          id="mobile-menu"
           className="neo-border md:hidden"
           style={{
             backgroundColor: "var(--nav-bg)",

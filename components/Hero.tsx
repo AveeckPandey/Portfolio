@@ -51,6 +51,16 @@ export default function Hero({ hero }: { hero: any }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <section
       id="home"
@@ -237,7 +247,8 @@ export default function Hero({ hero }: { hero: any }) {
             >
               <a
                 href={hero.ctaHref}
-                className="group inline-flex items-center gap-2 border-2 px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:-translate-y-1"
+                onClick={(e) => handleSmoothScroll(e, hero.ctaHref)}
+                className="group inline-flex items-center gap-2 border-2 px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:-translate-y-1 cursor-pointer"
                 style={{ borderColor: INK, backgroundColor: INK, color: PAPER, boxShadow: `5px 6px 0 ${ACCENT}` }}
               >
                 {hero.cta}
@@ -253,7 +264,8 @@ export default function Hero({ hero }: { hero: any }) {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 border-2 px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:-translate-y-1"
+                onClick={(e) => handleSmoothScroll(e, "#contact")}
+                className="inline-flex items-center gap-2 border-2 px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 hover:-translate-y-1 cursor-pointer"
                 style={{ borderColor: INK, backgroundColor: "transparent", color: INK, boxShadow: `5px 6px 0 ${INK}` }}
               >
                 ✉ Contact

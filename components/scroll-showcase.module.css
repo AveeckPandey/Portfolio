@@ -335,24 +335,15 @@
 .folio {
   position: absolute;
   inset: 0;
-  /* Flex column. Content starts at the top. The bullet list absorbs
-     any remaining vertical space (`flex: 1`) so shorter folios
-     have an extended bullet list area and longer folios (Hope Box)
-     don't leave an empty gap. The card itself stays at inset: 0
-     so all folios share the same bounding box for the cross-fade. */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 14px;
-  /* Asymmetric padding leaves room for the red margin line on the
-     left (the line itself is drawn by `::before` below). */
-  padding: 24px 32px 20px 80px;
+  gap: 12px;
+  padding: 20px 28px 20px 72px;
   max-height: 100%;
   overflow-y: auto;
-  scrollbar-width: none;
-  /* Notebook-paper fill: opaque parchment, no glass, no blur.
-     Lined paper effect is layered on top via repeating-linear-
-     gradients; the red margin is drawn by `::before`. */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 20, 17, 0.3) transparent;
   background-color: #F2E4CF;
   border: 1.5px solid #171411;
   border-radius: 2px;
@@ -366,7 +357,13 @@
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
 }
-.folio::-webkit-scrollbar { display: none; }
+.folio::-webkit-scrollbar {
+  width: 6px;
+}
+.folio::-webkit-scrollbar-thumb {
+  background-color: rgba(23, 20, 17, 0.25);
+  border-radius: 3px;
+}
 
 /* Red margin line on the left — drawn as a vertical gradient that
    runs the full height of the folio, ~72px from the left edge. The
@@ -376,7 +373,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 72px;
+  left: 60px;
   width: 1.5px;
   background: rgba(200, 58, 58, 0.65);
   pointer-events: none;
@@ -429,12 +426,12 @@
   justify-content: space-between;
   align-items: center;
   font-family: "Courier New", Courier, monospace;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #5C3D1E;
   border-bottom: 1px dashed rgba(23, 20, 17, 0.25);
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .folioCategory {
@@ -448,22 +445,22 @@
 
 .folioTitle {
   font-family: "Courier New", Courier, monospace;
-  font-size: clamp(36px, 4.2vw, 56px);
+  font-size: clamp(22px, 2.2vw, 34px);
   font-weight: 700;
   letter-spacing: 0;
   margin: 0;
   color: var(--ink);
-  line-height: 1.1;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
 .folioDescription {
   font-family: "Courier New", Courier, monospace;
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #3D2B1D;
   margin: 0;
-  max-width: 70ch;
+  max-width: 75ch;
 }
 
 .folioStack {
@@ -471,17 +468,17 @@
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 6px;
+  gap: 5px;
 }
 
 .folioTag {
   flex: 0 0 auto;
   font-family: "Courier New", Courier, monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border: 1.5px solid #171411;
   border-radius: 0;
   color: var(--ink);
@@ -495,49 +492,52 @@
   margin: 0;
   padding-left: 18px;
   font-family: "Courier New", Courier, monospace;
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--ink-soft);
-  /* The bullet list absorbs all remaining vertical space inside the
-     card, so the bullets spread from the bottom of the stack tags
-     to the top of the "View project" link. With `space-between`,
-     the first bullet sits just below the tags and the last bullet
-     sits just above the link — no empty gap at either end. */
-  flex: 1 1 auto;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #3D2B1D;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  /* Small inner padding so the first/last bullets aren't pressed
-     against the card edges. */
-  padding: 4px 0;
+  gap: 6px;
+  padding: 2px 0;
 }
 
 .folioPoints li {
   margin: 0;
 }
 
-/* No spacer needed — the bullet list itself absorbs the gap. */
+/* No spacer needed */
 .folioSpacer {
   display: none;
 }
 
 .folioLink {
-  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 8px 16px;
   font-family: "Courier New", Courier, monospace;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--cinnabar);
+  color: #F6E8D3;
+  background-color: #171411;
+  border: 1.5px solid #171411;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 #9A5A25;
   text-decoration: none;
-  border-bottom: 1px solid var(--cinnabar);
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  align-self: flex-start;
+  z-index: 5;
 }
 
 .folioLink:hover {
-  color: var(--ink);
-  border-color: var(--ink);
+  background-color: #9A5A25;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #171411;
 }
 
 /* ---------------------------------------------------------------------------
@@ -558,6 +558,32 @@
 }
 
 @media (max-width: 768px) {
+  .introBackdrop {
+    min-height: auto;
+    padding: 32px 16px 16px;
+    gap: 12px;
+  }
+  .introSub {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+  .introHeading {
+    opacity: 1;
+    transform: none;
+    font-size: clamp(22px, 5.5vw, 32px);
+  }
+  .introQuote {
+    opacity: 1;
+    transform: none;
+    margin: 16px auto 0;
+    padding: 32px 16px 16px;
+    font-size: 13px;
+  }
+  .introQuoteMark {
+    font-size: 44px;
+    top: -20px;
+    padding: 0 10px;
+  }
   .sceneSticky {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
@@ -613,11 +639,50 @@
     top: -12px;
     right: -10px;
   }
-  .introHeading {
-    font-size: clamp(32px, 9vw, 56px);
-  }
   .upcomingGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+  .upcoming {
+    padding: 32px 16px 48px;
+  }
+  .upcomingHeading {
+    opacity: 1 !important;
+    transform: none !important;
+    margin: 0 0 24px !important;
+    font-size: clamp(22px, 5.5vw, 32px) !important;
+  }
+  .upcomingCard {
+    background-color: rgba(242, 228, 207, 0.96) !important;
+    border: 2px solid #171411 !important;
+    box-shadow: 4px 4px 0 #171411 !important;
+    border-radius: 0px !important;
+    padding: 22px 20px !important;
+  }
+  .upcomingTitle {
+    font-size: 20px !important;
+    color: #171411 !important;
+    font-weight: 700 !important;
+  }
+  .upcomingBlurb {
+    color: #3D2B1D !important;
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+  }
+  .upcomingLink {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #171411 !important;
+    color: #F6E8D3 !important;
+    padding: 10px 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    border: 1px solid #171411 !important;
+    box-shadow: 3px 3px 0 #9A5A25 !important;
+    margin-top: 12px !important;
+    width: fit-content !important;
   }
 }
 
@@ -758,6 +823,26 @@
   line-height: 1.55;
   color: var(--ink-soft);
   margin: 0;
+}
+
+.upcomingLink {
+  margin-top: auto;
+  padding-top: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cinnabar);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cinnabar);
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.upcomingLink:hover {
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 @media (prefers-reduced-motion: reduce) {

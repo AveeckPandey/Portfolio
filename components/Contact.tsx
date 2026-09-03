@@ -45,12 +45,8 @@ export default function Contact() {
     >
       {/* Top-left corner badge — glassmorphism */}
       <div
-        className="absolute left-6 top-6 z-10 inline-flex items-center gap-2 border-2 px-5 py-2.5 font-mono text-base font-bold uppercase tracking-[0.2em] md:left-10 md:top-10 md:px-6 md:py-3 md:text-2xl"
+        className="relative mb-6 inline-flex items-center gap-2 border-2 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.15em] md:absolute md:left-10 md:top-10 md:mb-0 md:px-6 md:py-3 md:text-2xl md:tracking-[0.2em]"
         style={{
-          // Translucent cream so the painting shows through faintly,
-          // blurred backdrop for the frosted feel, soft warm border
-          // to replace the hard black, gentle drop shadow instead
-          // of the offset neo-shadow.
           backgroundColor: "rgba(246, 232, 211, 0.45)",
           backdropFilter: "blur(14px) saturate(140%)",
           WebkitBackdropFilter: "blur(14px) saturate(140%)",

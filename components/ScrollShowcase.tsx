@@ -23,6 +23,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useAnimationGate } from "@/lib/hooks/useAnimationGate";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import ScrambleText from "./ScrambleText";
 import styles from "./scroll-showcase.module.css";
 
@@ -49,10 +50,10 @@ const PROJECTS: ReadonlyArray<Project> = [
     id: "yafavanam",
     numeral: "I",
     name: "YAFA VANAM",
-    category: "Full-Stack Beauty E-commerce",
+    category: "Full-Stack Beauty E-commerce Platform",
     year: "MMXXV",
     description:
-      "Built and deployed a full-stack beauty e-commerce platform with a Next.js/TypeScript frontend, Go commerce backend, and Python FastAPI service. Covered end-to-end shopping features product catalogues, authentication, cart, checkout, payments, orders, inventory, and reviews. Designed a scalable AWS architecture using CloudFront, ALB, private EC2s, RDS Multi-AZ, S3, and VPC networking. Implemented Lambda functions for post-signup welcome coupons and order-confirmation emails via SES, with Secrets Manager, IAM, CloudWatch monitoring, and CI/CD pipelines throughout.",
+      "Built and deployed YAFA VANAM, a full-stack beauty e-commerce platform with a responsive Next.js and TypeScript frontend, Go commerce backend, Python FastAPI service, PostgreSQL databases, Redis, and AWS infrastructure. Developed product catalogues, customer authentication, carts, checkout, payment workflows, orders, inventory, reviews, and personalised storefront experiences. Built secure APIs for product information, payment verification, order processing, and account management. Designed a scalable AWS deployment using CloudFront, Application Load Balancer, private EC2 services, RDS Multi-AZ, S3, Secrets Manager, IAM, CloudWatch, and VPC networking. Implemented AWS Lambda functions for Cognito post-sign-up welcome coupons and order-confirmation emails delivered through Amazon SES, with CI/CD, encryption, monitoring.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -74,21 +75,14 @@ const PROJECTS: ReadonlyArray<Project> = [
       "AWS VPC",
       "AWS Secrets Manager",
     ],
-    points: [
-      "Built responsive storefront and dashboards with Next.js + TypeScript, backed by a Go commerce service and Python FastAPI for ancillary workflows",
-      "Developed product catalogues, auth, carts, checkout, payment, orders, inventory, reviews, and personalised storefronts end-to-end",
-      "Designed a multi-AZ AWS deployment with CloudFront, ALB, private EC2, RDS, S3, Secrets Manager, IAM, CloudWatch, and VPC",
-      "Implemented AWS Lambda for Cognito post-sign-up welcome coupons and order-confirmation emails via Amazon SES",
-      "Hardened APIs, data, and IAM with encryption, secrets management, and continuous monitoring",
-      "Automated build, test, and deploy with a CI/CD pipeline wired into the AWS estate",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/Yafa-Vanam" },
   },
   {
     id: "hopebox",
     numeral: "II",
     name: "HOPEBOX",
-    category: "Full-Stack Mobile · NGO Logistics",
+    category: "NGO Inventory & QR Logistics Management System",
     year: "MMXXV",
     description:
       "Built HopeBox, a full-stack mobile inventory and QR logistics application for NGOs and relief organisations using React Native, Expo, TypeScript, Firebase Authentication, and Cloud Firestore. Developed an admin-configurable commodity catalogue covering food, medical, hygiene, therapeutic, and agricultural supplies, with reusable box templates, batch and expiry tracking, and real-time inventory visibility. Implemented QR-based box creation, label printing, camera scanning, and lifecycle tracking from storage through dispatch and return. Used Firestore real-time synchronization and atomic transactions to maintain stock accuracy, prevent negative inventory, and avoid concurrent dispatch conflicts. Added dashboards, authentication, offline-aware behaviour, dark mode, English/Hindi and More Languages support, error handling, and Jest tests.",
@@ -102,24 +96,17 @@ const PROJECTS: ReadonlyArray<Project> = [
       "Label Printing",
       "Jest",
     ],
-    points: [
-      "Built the cross-platform mobile app with React Native, Expo, and TypeScript for NGO field operations",
-      "Developed an admin-configurable commodity catalogue (food, medical, hygiene, therapeutic, agricultural) with reusable box templates",
-      "Implemented QR-based box creation, label printing, camera scanning, and full lifecycle tracking",
-      "Used Firestore real-time sync + atomic transactions to prevent negative stock and concurrent dispatch conflicts",
-      "Added real-time dashboards, batch & expiry tracking, authentication, offline-aware behaviour, and dark mode",
-      "Delivered English/Hindi and additional-language localization with broad error handling and Jest unit tests",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/HopeBox" },
   },
   {
     id: "nexussecure",
     numeral: "III",
     name: "NEXUS SECURE",
-    category: "Full-Stack Mobile · Cloud · E2EE",
+    category: "Full-Stack Mobile & Cloud Developer",
     year: "MMXXV",
     description:
-      "Built a cross-platform zero-knowledge mobile messaging app using React Native, Expo, and NativeWind with C++ JSI bindings. Implemented on-device end-to-end encryption via X25519 key exchange, AES-256-GCM, Android Keystore, and iOS Keychain — the server routes ciphertext only. Developed WebSocket-based real-time messaging and designed stateless AWS infrastructure with EC2, ElastiCache Redis, S3, VPC, IAM, and CloudWatch. Automated native build validation, APK/AAB generation, and delivery using EAS Build and EAS Workflows.",
+      "Developed Nexus Secure, a cross-platform, zero-knowledge mobile messaging app using React Native, Expo, NativeWind, C++ JSI bindings, and AWS. Built reusable mobile interfaces, WebSocket-based real-time communication, and device-native workflows for secure encrypted messaging. Designed stateless AWS infrastructure with EC2, ElastiCache Redis, S3, IAM, CloudWatch, and VPC for hosting, connection state, monitoring, access control, and network isolation. Implemented on-device end-to-end encryption using X25519 key exchange, Diffie-Hellman shared-secret derivation, AES-256-GCM encryption, Android Keystore, and iOS Keychain. The server routes ciphertext only, preserving private communication between users. Automated native build validation, APK/AAB generation, dependency compilation, and delivery using EAS Build and EAS Workflows.",
     stack: [
       "React Native",
       "Expo",
@@ -138,24 +125,17 @@ const PROJECTS: ReadonlyArray<Project> = [
       "EAS Build",
       "EAS Workflows",
     ],
-    points: [
-      "Built cross-platform mobile interfaces, real-time WebSocket communication, and device-native workflows with React Native + Expo",
-      "Designed stateless AWS infrastructure (EC2, ElastiCache Redis, S3, IAM, CloudWatch, VPC) for hosting, connection state, and access control",
-      "Implemented on-device E2EE with X25519 key exchange, Diffie-Hellman shared-secret derivation, and AES-256-GCM encryption",
-      "Secured device keys with Android Keystore and iOS Keychain — the server routes ciphertext only",
-      "Hardened application and infrastructure security across JSI crypto, device keystores, IAM, and network isolation",
-      "Automated native build validation, APK/AAB generation, dependency compilation, and delivery with EAS Build + EAS Workflows",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/Nexus" },
   },
   {
     id: "rag-assistant",
     numeral: "IV",
-    name: "RAG KNOWLEDGE ASSISTANT",
+    name: "PRODUCTION RAG KNOWLEDGE ASSISTANT",
     category: "AI · Backend · Production",
     year: "MMXXVI",
     description:
-      "Built a production-ready RAG assistant using Python, FastAPI, PostgreSQL with pgvector, Redis, and Amazon Bedrock. Designed a full ingestion-to-response pipeline with semantic chunking, vector retrieval, reranking, and citation-based answers. Added safeguards for relevance thresholds, prompt-injection filtering, conflict detection, and deterministic fallbacks. Secured multi-tenant access via PostgreSQL Row-Level Security and implemented circuit breakers, LLM failover, and automated evaluation suites for production reliability.",
+      "Built a production ready Retrieval-Augmented Generation (RAG) knowledge assistant using Python, FastAPI, PostgreSQL with pgvector, Redis, and Amazon Bedrock. Designed an end-to-end pipeline for approved document ingestion, semantic chunking, embedding generation, metadata-filtered vector retrieval, reranking, and citation-based responses. Added safeguards for weak or incorrect answers through relevance thresholds, grounded-answer validation, conflict detection, prompt-injection filtering, document revocation, and deterministic fallbacks. Implemented secure multi-tenant access with signed tenant identity, PostgreSQL Row-Level Security, tenant-aware cache keys, and private internal APIs. Optimized reliability and scale using caching, request coalescing, concurrency limits, circuit breakers, LLM/database failover, telemetry, and automated evaluation suites before deployment in production environments.",
     stack: [
       "Python",
       "FastAPI",
@@ -167,15 +147,8 @@ const PROJECTS: ReadonlyArray<Project> = [
       "Row-Level Security",
       "Evaluation Harness",
     ],
-    points: [
-      "Built the end-to-end RAG pipeline: approved document ingestion, semantic chunking, embedding, metadata-filtered retrieval, reranking, and citation-based responses",
-      "Hardened answer quality with relevance thresholds, grounded-answer validation, conflict detection, prompt-injection filtering, document revocation, and deterministic fallbacks",
-      "Implemented secure multi-tenant access via signed tenant identity, PostgreSQL Row-Level Security, tenant-aware cache keys, and private internal APIs",
-      "Improved reliability and scale with caching, request coalescing, concurrency limits, circuit breakers, and LLM/database failover",
-      "Instrumented the system with telemetry and ran automated evaluation suites before promoting to production",
-      "Deployed on AWS using Amazon Bedrock for model access, with Redis and pgvector as the working memory layers",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/Yafa-Vanam" },
   },
   {
     id: "support-inbox",
@@ -193,15 +166,8 @@ const PROJECTS: ReadonlyArray<Project> = [
       "AI Classification",
       "Email Parsing",
     ],
-    points: [
-      "Identified manual triage as the bottleneck and designed an n8n automation pipeline as the fix",
-      "Self-hosted n8n on AWS EC2 with Docker; webhooks watch the shared support inbox in real time",
-      "Parsed incoming emails and ran AI-powered classification to label each ticket by intent (payment, onboarding, technical)",
-      "Routed classified tickets to the correct queue before any human intervention",
-      "Eliminated manual first-touch triage for common categories and improved response consistency",
-      "Established a structured data foundation for downstream auto-reply and sentiment-tracking automations",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/AUTOMATED-SUPPORT-TRIAGE" },
   },
   {
     id: "linkedin-automation",
@@ -218,15 +184,8 @@ const PROJECTS: ReadonlyArray<Project> = [
       "Amazon EC2",
       "LinkedIn API",
     ],
-    points: [
-      "Replaced repetitive, error-prone manual posting with an end-to-end n8n automation pipeline",
-      "Pulled structured job data from a source and formatted it into platform-ready LinkedIn content",
-      "Published listings to LinkedIn without any manual intervention",
-      "Self-hosted n8n on AWS EC2 with Docker and Caddy; triggered on demand or on a schedule",
-      "Reduced time-to-publish from hours to seconds by automating formatting, field mapping, and publishing",
-      "Designed the system modularly so new job boards or social platforms can be added with minimal change",
-    ],
-    link: { label: "View project", href: "#" },
+    points: [],
+    link: { label: "View project", href: "https://github.com/AveeckPandey/LINKEDIN-JOB-AUTOMATION" },
   },
 ];
 
@@ -237,50 +196,33 @@ interface Upcoming {
   name: string;
   blurb: string;
   status: string;
+  link?: { href: string };
 }
 
 const UPCOMING: ReadonlyArray<Upcoming> = [
   {
+    id: "macroiq",
+    name: "MacroIQ",
+    blurb:
+      "MacroIQ is a fine-tuned AI chatbot that answers macroeconomic questions using real historical data. Ask how Fed rate hikes affect gold, or what oil shocks do to equities — it retrieves relevant past events from a vector database and explains the causal chain in plain language.",
+    status: "Live",
+    link: { href: "https://github.com/AveeckPandey/MacroIQ-" },
+  },
+  {
+    id: "preppilot",
+    name: "PrepPilot",
+    blurb:
+      "PrepPilot is an AI-powered voice interview coach that helps job seekers prepare smarter. Upload your resume, and PrepPilot generates personalized interview questions based on your experience and target role. You answer by speaking — just like a real interview — and PrepPilot listens, evaluates your responses, and tells you exactly where you excelled and where you need to improve.",
+    status: "Live",
+    link: { href: "https://github.com/AveeckPandey/PrepPilot" },
+  },
+  {
     id: "zootopia",
     name: "Zootopia",
     blurb:
-      "An interactive bestiary that turns taxonomic data into explorable 3D habitats. Aimed at curious learners and classroom use.",
-    status: "In design",
-  },
-  {
-    id: "terminal",
-    name: "Terminal",
-    blurb:
-      "A polished cross-platform terminal with split panes, command pipelines, and a plugin host for theme and tool extensions.",
-    status: "Alpha",
-  },
-  {
-    id: "moviemate",
-    name: "MovieMate",
-    blurb:
-      "A watch-together app that syncs playback across rooms, queues suggestions from a small taste graph, and tracks what you actually finish.",
-    status: "Prototyping",
-  },
-  {
-    id: "cartograph",
-    name: "Cartograph",
-    blurb:
-      "A personal map diary that pins the places you've lived to a hand-drawn world map, with a timeline you can scrub like a journey.",
-    status: "In design",
-  },
-  {
-    id: "penumbra",
-    name: "Penumbra",
-    blurb:
-      "A focus timer that dims the screen based on your typing rhythm and layers adaptive ambient soundscapes onto the work session.",
-    status: "Prototyping",
-  },
-  {
-    id: "kitemark",
-    name: "Kitemark",
-    blurb:
-      "A small reading companion that bookmarks long-form articles offline, estimates your finish time, and surfaces the lines you'll want to come back to.",
-    status: "Alpha",
+      "Zootopia is a cloud-powered ticketing platform that helps wildlife parks manage admissions effortlessly. Visitors select their desired date and time online, and Zootopia instantly generates secure digital QR tickets right on their phones. Guests simply scan their screens at the gate — skipping the box office entirely — while Zootopia works behind the scenes to validate entry, prevent double-booking in real time, and automatically scale on AWS to handle massive holiday crowds without breaking a sweat.",
+    status: "Live",
+    link: { href: "https://github.com/AveeckPandey/Zootopia" },
   },
 ];
 
@@ -293,6 +235,7 @@ export default function ScrollShowcase() {
   const progressRefs = useRef<Array<HTMLLIElement | null>>([]);
   const currentIdxRef = useRef(0);
   const lenisRef = useRef<Lenis | null>(null);
+  const isMobile = useIsMobile();
   // Gate the continuous Lenis animation to the nearby section. The
   // ScrollTriggers themselves are deliberately kept alive below: their pin
   // spacer must exist before a navbar jump crosses this section, otherwise
@@ -300,7 +243,7 @@ export default function ScrollShowcase() {
   const active = useAnimationGate(rootRef, { rootMargin: "200px" });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || isMobile) return;
     const root = rootRef.current;
     if (!root) return;
 
@@ -401,10 +344,10 @@ export default function ScrollShowcase() {
     ScrollTrigger.refresh();
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active || isMobile) return;
 
     // Keep the smooth-scroll loop scoped to the nearby project scene; the
     // permanent ScrollTriggers above preserve the layout while it is idle.
@@ -425,7 +368,7 @@ export default function ScrollShowcase() {
         lenisRef.current = null;
       }
     };
-  }, [active]);
+  }, [active, isMobile]);
 
   return (
     <section id="projects" ref={rootRef} className={styles.demoRoot}>
@@ -447,8 +390,65 @@ export default function ScrollShowcase() {
         </blockquote>
       </div>
 
-      {/* Pinned folio scene. */}
-      <section data-scene-wrapper className={styles.sceneWrapper}>
+      {/* Mobile Projects Stack vs Desktop Pinned Scene */}
+      {isMobile ? (
+        <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-4 py-8 md:hidden font-mono" aria-label="Projects">
+          <div className="flex items-center justify-between border-b-2 border-dashed border-[#171411]/25 pb-3">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#9A5A25]">
+              Projects · MMXXV
+            </span>
+            <span className="font-mono text-xs font-bold uppercase text-[#171411]/60">
+              {PROJECTS.length} Built
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {PROJECTS.map((p) => (
+              <article
+                key={p.id}
+                className="neo-border neo-shadow p-5 flex flex-col gap-4"
+                style={{ backgroundColor: "#F2E4CF", borderColor: "#171411" }}
+              >
+                <header className="flex items-center justify-between border-b-2 border-dashed border-[#171411]/25 pb-2 text-[10px] font-bold uppercase text-[#9A5A25]">
+                  <span>{p.category} · N° {p.numeral}</span>
+                  <span className="text-[#171411]/60">{p.year}</span>
+                </header>
+
+                <h3 className="font-mono text-xl font-bold uppercase tracking-tight text-[#171411]">
+                  {p.name}
+                </h3>
+
+                <p className="text-xs text-[#3D2B1D] leading-relaxed">
+                  {p.description}
+                </p>
+
+                {/* Tech Stack Chips */}
+                <div className="flex flex-wrap gap-1.5">
+                  {p.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="border border-[#171411] bg-[#E9DCB8] px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-[#171411] neo-shadow-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Link CTA Button */}
+                <a
+                  href={p.link.href}
+                  target={p.link.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="neo-border neo-shadow inline-flex items-center justify-center gap-2 bg-[#171411] px-4 py-2.5 font-mono text-xs font-bold uppercase text-[#F6E8D3] hover:bg-[#9A5A25] transition-colors mt-2"
+                >
+                  {p.link.label} →
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <section data-scene-wrapper className={styles.sceneWrapper}>
         <div data-scene-sticky ref={sceneStickyRef} className={styles.sceneSticky}>
           <div className={styles.sectionLabel}>
             <span>Projects · MMXXV</span>
@@ -527,16 +527,19 @@ export default function ScrollShowcase() {
                     ))}
                   </div>
 
-                  <ul className={styles.folioPoints}>
-                    {p.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
+                  {p.points && p.points.length > 0 && (
+                    <ul className={styles.folioPoints}>
+                      {p.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  )}
 
                   <a
                     href={p.link.href}
-                    className={styles.folioLink}
+                    target={p.link.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
+                    className={styles.folioLink}
                   >
                     {p.link.label} →
                   </a>
@@ -546,6 +549,7 @@ export default function ScrollShowcase() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ----------------------------------------------------------------
        * Upcoming Projects — non-pinned. The "Upcoming Projects" label
@@ -572,6 +576,16 @@ export default function ScrollShowcase() {
               </header>
               <h3 className={styles.upcomingTitle}>{u.name}</h3>
               <p className={styles.upcomingBlurb}>{u.blurb}</p>
+              {u.link && (
+                <a
+                  href={u.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.upcomingLink}
+                >
+                  View on GitHub →
+                </a>
+              )}
             </li>
           ))}
         </ul>
