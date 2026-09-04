@@ -30,32 +30,6 @@
   --parchment: #E2D4BA;
 }
 
-[data-theme="ai"] {
-  --bg: #0047AB;
-  --fg: #E8ECF4;
-  --primary: #E8ECF4;
-  --primary-fg: #0A0E17;
-  --secondary: #131927;
-  --secondary-fg: #E8ECF4;
-  --accent: #00E5FF;
-  --accent-fg: #0A0E17;
-  --surface: #131927;
-  --surface-fg: #E8ECF4;
-  --border: #2A3550;
-  --muted: #1E2740;
-  --muted-fg: #8899B8;
-  --card: #131927;
-  --card-fg: #E8ECF4;
-  --shadow: #1E2740;
-  --nav-bg: #0A0E17;
-  --nav-border: #38BDF8;
-  --dot-overlay: rgba(0, 229, 255, 0.25);
-}
-
-[data-theme="ai"] body {
-  background-image:
-    radial-gradient(circle, var(--dot-overlay) 1px, transparent 1px);
-}
 
 html {
   scroll-behavior: smooth;

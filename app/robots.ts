@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://aveeck.dev/sitemap.xml",
+    sitemap: "https://portfolio.buildwithaveeck.com/sitemap.xml",
   };
 }

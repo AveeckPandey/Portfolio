@@ -62,6 +62,7 @@ const rubikMono = Rubik_Mono_One({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio.buildwithaveeck.com"),
   title: "Aveeck Pandey — Software Engineer",
   description:
     "Software engineer specializing in full-stack development, backend systems, cloud infrastructure, APIs, and production software.",

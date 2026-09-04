@@ -12,8 +12,8 @@ export default function StructuredData({ type }: StructuredDataProps) {
       type === "ai"
         ? "AI engineer specializing in LLM systems, RAG pipelines, AI agents, and production AI infrastructure."
         : "Software engineer specializing in full-stack development, backend systems, cloud infrastructure, and production software.",
-    url: type === "ai" ? "https://aveeck.dev/ai" : "https://aveeck.dev/",
-    sameAs: ["https://github.com/aveeck", "https://linkedin.com/in/aveeck"],
+    url: "https://portfolio.buildwithaveeck.com/",
+    sameAs: ["https://github.com/AveeckPandey", "https://linkedin.com/in/aveeck-pandey"],
   };
 
   const webPageSchema = {
