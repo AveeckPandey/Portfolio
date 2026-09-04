@@ -34,7 +34,7 @@ export default function SoftwarePage() {
 
   return (
     <>
-    <StructuredData type="software" />
+    <StructuredData />
     <PortfolioPage>
       <Navbar />
       <Hero hero={data.hero} />

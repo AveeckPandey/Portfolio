@@ -8,7 +8,6 @@ import {
   Cormorant_Garamond,
   Rubik_Mono_One,
 } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import LowMotionBoot from "@/components/LowMotionBoot";
 import "./globals.css";
 
@@ -76,6 +75,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="software"
       className={`${audiowide.variable} ${orbitron.variable} ${sharetech.variable} ${cinzel.variable} ${cormorant.variable} ${rubikMono.variable}`}
     >
       <body>
@@ -121,11 +121,9 @@ export default function RootLayout({
           </defs>
         </svg>
 
-        <ThemeProvider>
-          {children}
-          <LowMotionBoot />
-          <SpeedInsights />
-        </ThemeProvider>
+        {children}
+        <LowMotionBoot />
+        <SpeedInsights />
       </body>
     </html>
   );

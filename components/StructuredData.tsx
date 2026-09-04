@@ -1,17 +1,11 @@
-interface StructuredDataProps {
-  type: "software" | "ai";
-}
-
-export default function StructuredData({ type }: StructuredDataProps) {
+export default function StructuredData() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Aveeck Pandey",
-    jobTitle: type === "ai" ? "AI Engineer" : "Software Engineer",
+    jobTitle: "Software & AI Engineer",
     description:
-      type === "ai"
-        ? "AI engineer specializing in LLM systems, RAG pipelines, AI agents, and production AI infrastructure."
-        : "Software engineer specializing in full-stack development, backend systems, cloud infrastructure, and production software.",
+      "Software & AI engineer specializing in full-stack development, backend systems, cloud infrastructure, RAG pipelines, AI agents, and production software.",
     url: "https://portfolio.buildwithaveeck.com/",
     sameAs: ["https://github.com/AveeckPandey", "https://linkedin.com/in/aveeck-pandey"],
   };
@@ -19,7 +13,7 @@ export default function StructuredData({ type }: StructuredDataProps) {
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: type === "ai" ? "Aveeck Pandey — AI Engineer" : "Aveeck Pandey — Software Engineer",
+    name: "Aveeck Pandey — Software Engineer",
     description: personSchema.description,
     url: personSchema.url,
     author: {
