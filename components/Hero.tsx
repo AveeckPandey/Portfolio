@@ -368,7 +368,7 @@ export default function Hero({ hero }: { hero: any }) {
 
         {/* Bottom marquee — full-width ticker-tape with grunge fades and seamless loop */}
         <div
-          className="relative mt-16 h-[54px] w-full overflow-hidden"
+          className="relative -mx-6 md:-mx-20 mt-16 h-[54px] overflow-hidden"
           style={{
             backgroundColor: "#111",
             opacity: mounted ? 1 : 0,
