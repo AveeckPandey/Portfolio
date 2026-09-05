@@ -366,53 +366,53 @@ export default function Hero({ hero }: { hero: any }) {
           </div>
         </div>
 
-        {/* Bottom marquee — full-width ticker-tape with grunge fades and seamless loop */}
+      </div>
+
+      {/* Bottom marquee — full-width ticker-tape with grunge fades and seamless loop */}
+      <div
+        className="relative mt-16 h-[54px] w-full overflow-hidden"
+        style={{
+          backgroundColor: "#111",
+          opacity: mounted ? 1 : 0,
+          transition: "opacity 0.6s ease 1.6s",
+        }}
+      >
+        {/* Left grunge fade */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 z-[2] h-full w-[120px]"
+          style={{ background: "linear-gradient(to right, rgba(180, 140, 80, 0.38), transparent)" }}
+        />
+        {/* Right grunge fade */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[120px]"
+          style={{ background: "linear-gradient(to left, rgba(180, 140, 80, 0.38), transparent)" }}
+        />
+
+        {/* Scrolling track — duplicated for seamless loop */}
         <div
-          className="relative -mx-6 md:-mx-20 mt-16 h-[54px] overflow-hidden"
-          style={{
-            backgroundColor: "#111",
-            opacity: mounted ? 1 : 0,
-            transition: "opacity 0.6s ease 1.6s",
-          }}
+          className="flex h-full items-center whitespace-nowrap"
+          style={{ animation: "ticker-scroll 45s linear infinite", willChange: "transform" }}
         >
-          {/* Left grunge fade */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute left-0 top-0 z-[2] h-full w-[120px]"
-            style={{ background: "linear-gradient(to right, rgba(180, 140, 80, 0.38), transparent)" }}
-          />
-          {/* Right grunge fade */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[120px]"
-            style={{ background: "linear-gradient(to left, rgba(180, 140, 80, 0.38), transparent)" }}
-          />
-
-          {/* Scrolling track — duplicated for seamless loop */}
-          <div
-            className="flex h-full items-center whitespace-nowrap"
-            style={{ animation: "ticker-scroll 45s linear infinite", willChange: "transform" }}
-          >
-            {[...stack, ...stack].map((s, i) => (
+          {[...stack, ...stack].map((s, i) => (
+            <span
+              key={i}
+              className="flex shrink-0 items-center px-[36px] font-mono text-[12px] font-bold uppercase text-white"
+              style={{ letterSpacing: "3.5px" }}
+            >
+              <span className="mr-[10px]">★</span>
+              {s}
               <span
-                key={i}
-                className="flex shrink-0 items-center px-[36px] font-mono text-[12px] font-bold uppercase text-white"
-                style={{ letterSpacing: "3.5px" }}
+                aria-hidden="true"
+                className="ml-[36px] text-[10px] leading-none"
+                style={{ color: "#d4862a" }}
               >
-                <span className="mr-[10px]">★</span>
-                {s}
-                <span
-                  aria-hidden="true"
-                  className="ml-[36px] text-[10px] leading-none"
-                  style={{ color: "#d4862a" }}
-                >
-                  ●
-                </span>
+                ●
               </span>
-            ))}
-          </div>
+            </span>
+          ))}
         </div>
-
       </div>
 
     </section>
