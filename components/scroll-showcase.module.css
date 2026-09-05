@@ -342,8 +342,8 @@
   padding: 20px 28px 20px 72px;
   max-height: 100%;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(23, 20, 17, 0.3) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-color: #F2E4CF;
   border: 1.5px solid #171411;
   border-radius: 2px;
@@ -358,11 +358,9 @@
   pointer-events: none;
 }
 .folio::-webkit-scrollbar {
-  width: 6px;
-}
-.folio::-webkit-scrollbar-thumb {
-  background-color: rgba(23, 20, 17, 0.25);
-  border-radius: 3px;
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Red margin line on the left — drawn as a vertical gradient that
