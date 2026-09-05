@@ -14,7 +14,7 @@ import StructuredData from "@/components/StructuredData";
 import softwareData from "@/content/software";
 
 export const metadata: Metadata = {
-  title: "Aveeck Pandey — Software Engineer",
+  title: "Aveeck Pandey",
   description:
     "Software engineer specializing in full-stack development, backend systems, cloud infrastructure, APIs, and production software. Building reliable, scalable applications.",
   openGraph: {
