@@ -65,6 +65,10 @@ export const metadata: Metadata = {
   title: "Aveeck Pandey — Software Engineer",
   description:
     "Software engineer specializing in full-stack development, backend systems, cloud infrastructure, APIs, and production software.",
+  icons: {
+    icon: "/assets/Background-2.webp",
+    apple: "/assets/Background-2.webp",
+  },
 };
 
 export default function RootLayout({

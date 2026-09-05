@@ -97,15 +97,18 @@ export default function Navbar() {
           onClick={(e) => handleNavClick(e, "#home")}
           className="flex items-center gap-3"
         >
-          <span
-            className="neo-shadow flex h-[44px] w-[44px] items-center justify-center font-display text-sm font-bold"
+          <div
+            className="neo-shadow neo-border relative flex h-[44px] w-[44px] items-center justify-center overflow-hidden"
             style={{
               backgroundColor: "var(--primary)",
-              color: "var(--primary-fg)",
             }}
           >
-            AP
-          </span>
+            <img
+              src="/assets/Background-2.webp"
+              alt="Aveeck Pandey Logo"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
           <span
             className="hidden font-mono text-[11px] font-bold uppercase sm:inline"
             style={{ letterSpacing: "0.15em", color: navForeground }}
