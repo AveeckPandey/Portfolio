@@ -215,6 +215,7 @@
 .timelineRail {
   position: relative;
   width: 56px;
+  height: 68px;
   /* Fixed height that matches the list's content (3 items × 16px
      line + 2 × 14px gap ≈ 76px). The dashes fill this column and
      the moving indicator at `top: calc(var(--progress) * 100%)`
@@ -506,6 +507,20 @@
 /* No spacer needed */
 .folioSpacer {
   display: none;
+}
+
+/* Folio Action Buttons */
+.folioActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  z-index: 5;
+}
+
+.folioActions .folioLink {
+  margin-top: 0;
 }
 
 .folioLink {

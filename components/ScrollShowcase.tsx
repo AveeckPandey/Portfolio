@@ -43,6 +43,7 @@ interface Project {
   stack: string[];
   points: string[];
   link: { label: string; href: string };
+  demoLink?: { label: string; href: string };
 }
 
 const PROJECTS: ReadonlyArray<Project> = [
@@ -77,6 +78,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     ],
     points: [],
     link: { label: "View project", href: "https://github.com/AveeckPandey/Yafa-Vanam" },
+    demoLink: { label: "Demo Video", href: "https://x.com/BuildWithAveeck/status/2098317702322610570?s=20" },
   },
   {
     id: "hopebox",
@@ -98,6 +100,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     ],
     points: [],
     link: { label: "View project", href: "https://github.com/AveeckPandey/HopeBox" },
+    demoLink: { label: "Demo Video", href: "https://x.com/BuildWithAveeck/status/2098317702322610570?s=20" },
   },
   {
     id: "nexussecure",
@@ -127,65 +130,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     ],
     points: [],
     link: { label: "View project", href: "https://github.com/AveeckPandey/Nexus" },
-  },
-  {
-    id: "rag-assistant",
-    numeral: "IV",
-    name: "PRODUCTION RAG KNOWLEDGE ASSISTANT",
-    category: "AI · Backend · Production",
-    year: "MMXXVI",
-    description:
-      "Built a production ready Retrieval-Augmented Generation (RAG) knowledge assistant using Python, FastAPI, PostgreSQL with pgvector, Redis, and Amazon Bedrock. Designed an end-to-end pipeline for approved document ingestion, semantic chunking, embedding generation, metadata-filtered vector retrieval, reranking, and citation-based responses. Added safeguards for weak or incorrect answers through relevance thresholds, grounded-answer validation, conflict detection, prompt-injection filtering, document revocation, and deterministic fallbacks. Implemented secure multi-tenant access with signed tenant identity, PostgreSQL Row-Level Security, tenant-aware cache keys, and private internal APIs. Optimized reliability and scale using caching, request coalescing, concurrency limits, circuit breakers, LLM/database failover, telemetry, and automated evaluation suites before deployment in production environments.",
-    stack: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "pgvector",
-      "Redis",
-      "Amazon Bedrock",
-      "Reranking",
-      "Row-Level Security",
-      "Evaluation Harness",
-    ],
-    points: [],
-    link: { label: "View project", href: "https://github.com/AveeckPandey/Yafa-Vanam" },
-  },
-  {
-    id: "support-inbox",
-    numeral: "V",
-    name: "AUTOMATED SUPPORT TRIAGE",
-    category: "Automation · AI · n8n",
-    year: "MMXXVI",
-    description:
-      "Supplier support inbox received high volumes of unstructured emails daily, requiring manual triage that slowed response times. I built an n8n automation pipeline, self-hosted on AWS EC2 with Docker, that watches the shared inbox via webhook, parses incoming emails, and runs AI-powered classification to label each ticket by intent — payment queries, onboarding issues, technical errors. Classified tickets are instantly routed to the correct queue before any human intervention. This eliminated manual first-touch triage for common categories, improved response consistency, and gave the support team a structured data foundation for future auto-reply and sentiment-tracking automations.",
-    stack: [
-      "n8n",
-      "Docker",
-      "Amazon EC2",
-      "Webhook",
-      "AI Classification",
-      "Email Parsing",
-    ],
-    points: [],
-    link: { label: "View project", href: "https://github.com/AveeckPandey/AUTOMATED-SUPPORT-TRIAGE" },
-  },
-  {
-    id: "linkedin-automation",
-    numeral: "VI",
-    name: "LINKEDIN JOB AUTOMATION",
-    category: "Automation · n8n",
-    year: "MMXXVI",
-    description:
-      "Manually publishing job listings across platforms is repetitive and error-prone at scale. I built an end-to-end automation pipeline using n8n that pulls structured job data from a source, formats it into platform-ready content, and automatically publishes listings to LinkedIn — without any manual intervention. The pipeline runs on a self-hosted AWS EC2 instance behind Docker and Caddy, triggered on demand or on schedule. Post formatting, field mapping, and publishing logic are fully automated, reducing time-to-publish from hours to seconds. The system is modular by design, making it straightforward to extend to additional job boards or social platforms.",
-    stack: [
-      "n8n",
-      "Docker",
-      "Caddy",
-      "Amazon EC2",
-      "LinkedIn API",
-    ],
-    points: [],
-    link: { label: "View project", href: "https://github.com/AveeckPandey/LINKEDIN-JOB-AUTOMATION" },
+    demoLink: { label: "Demo Video", href: "https://x.com/BuildWithAveeck/status/2098317702322610570?s=20" },
   },
 ];
 
@@ -434,15 +379,27 @@ export default function ScrollShowcase() {
                   ))}
                 </div>
 
-                {/* Link CTA Button */}
-                <a
-                  href={p.link.href}
-                  target={p.link.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="neo-border neo-shadow inline-flex items-center justify-center gap-2 bg-[#171411] px-4 py-2.5 font-mono text-xs font-bold uppercase text-[#F6E8D3] hover:bg-[#9A5A25] transition-colors mt-2"
-                >
-                  {p.link.label} →
-                </a>
+                {/* Link CTA Buttons */}
+                <div className="flex flex-wrap items-center gap-2.5 mt-2">
+                  <a
+                    href={p.link.href}
+                    target={p.link.href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="neo-border neo-shadow inline-flex items-center justify-center gap-2 bg-[#171411] px-4 py-2.5 font-mono text-xs font-bold uppercase text-[#F6E8D3] hover:bg-[#9A5A25] transition-colors"
+                  >
+                    {p.link.label} →
+                  </a>
+                  {p.demoLink && (
+                    <a
+                      href={p.demoLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="neo-border neo-shadow inline-flex items-center justify-center gap-2 bg-[#171411] px-4 py-2.5 font-mono text-xs font-bold uppercase text-[#F6E8D3] hover:bg-[#9A5A25] transition-colors"
+                    >
+                      {p.demoLink.label} →
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -535,14 +492,26 @@ export default function ScrollShowcase() {
                     </ul>
                   )}
 
-                  <a
-                    href={p.link.href}
-                    target={p.link.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    className={styles.folioLink}
-                  >
-                    {p.link.label} →
-                  </a>
+                  <div className={styles.folioActions}>
+                    <a
+                      href={p.link.href}
+                      target={p.link.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className={styles.folioLink}
+                    >
+                      {p.link.label} →
+                    </a>
+                    {p.demoLink && (
+                      <a
+                        href={p.demoLink.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.folioLink}
+                      >
+                        {p.demoLink.label} →
+                      </a>
+                    )}
+                  </div>
                 </article>
               ))
             )}
